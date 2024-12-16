@@ -1,0 +1,648 @@
+\documentclass{article}
+\usepackage[portuguese]{babel}
+\usepackage[letterpaper,top=2cm,bottom=1cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\title{Cálculo Não Renal}
+
+\begin{document}
+\maketitle
+
+\section{Limites!}
+
+\subsection{O que são limites?}
+Os limites sugiram como uma explicação para o funcionamento das integrais e derivadas, sendo um conceito relativamente novo no cálculo
+\subsection{Noção Intuitiva da Definição}
+Limite é o valor que uma função se aproxima à medida que a variável independente (geralmente x) chega perto de um determinado número. Mesmo que a função não atinja esse valor exato, o limite mostra o comportamento da função nesse ponto\\[10pt]
+Por exemplo, se uma função f(x) fica cada vez mais perto de 5 quando
+x se aproxima de 2, dizemos que o limite de f(x) quando x tende a 2 é 5. Outro exemplo, f(2) = 3, quando x vale 2, y (ou f(x), se preferir) vale 3, então poderíamos dizer que o limite de f(x) ou y quando x tende a 2 é 3
+
+\subsection{Definição Formal de Limite}
+A definição formal de limite usa o conceito de \textbf{epsilon} (\(\epsilon\)) e \textbf{delta} (\(\delta\)). Essa definição garante que a função realmente se aproxima de um valor específico
+\\
+Relembre: $|x - a| < k$ , isso quer dizer que, $x \in (a - k, a + k)$\\[10pt]
+Lembre-se \textbf{módulo é uma distância}, a distância entre o $x$ e o $a$ é menor que $k$. Dito isso, o que essa definição diz é Isso é: $x$ pertence ao intervalo $(a - k, a + k)$
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[]{interavalo_de_x.png}
+    \caption{\textbf{Aqui fica mais fácil de entender. Perceba que $x$ está em algum lugar no intervalo demarcado pela "cobrinha" preta, que é o intervalo delimitado por $a - k$ e $a + k$}}
+\end{figure}
+\noindent Agora vamos pra explicação da definição formal de limite. De forma simplificada, ela funciona assim:
+\\[10pt]
+Dado um valor \(L\) que acreditamos ser o limite de \(f(x)\) quando \(x\) se aproxima de um valor \(a\), podemos afirmar que:
+\\[10pt]
+Para qualquer número muito pequeno \(\epsilon\) (que representa o quão perto queremos que \(f(x)\) fique de \(L\)), podemos encontrar um número \(\delta\) (que representa o quão perto \(x\) precisa estar de \(a\)).
+\\[10pt]
+Ou seja, sempre que \(x\) estiver dentro do intervalo \((a - \delta, a + \delta)\), o valor de \(f(x)\) estará dentro do intervalo \((L - \epsilon, L + \epsilon)\).
+
+É uma forma matemática de dizer: quanto mais próximo \(x\) estiver de \(a\), mais próximo \(f(x)\) estará de \(L\).
+
+\section{Propriedades e Teoremas dos Limites}
+
+\subsection{Teoremas}
+
+\begin{itemize}
+\item \textbf{Unicidade dos Limites:} ``O limite, se existir, é único."\\
+\textbf{Note:} Este teorema se refere ao limite global, logo, podem existir múltiplos \textbf{limites laterais}, mas a existência destes não se relaciona com a existência do limite global\\[10pt]
+\textbf{Consequências:} Funções não contínuas não possuem um limite global. Poissuem apenas limites laterais. Afinal, o limite global só existe se os limites laterais forem iguais
+
+\end{itemize}
+
+\subsection{Propriedades}
+
+\begin{enumerate}
+    \item $\displaystyle \lim_{x \to a} P(x) = P(a)$, onde P(x) é uma função polinomial\\
+    \\
+    Isso quer dizer, para qualquer função polinomial, o limite é simplesmente o valor numérico de $a$. Em casos que iremos ver futuramente, a aplicação direta do valor de $a$ no polinômio, ou seja, sem manipular ele, pode resultar em indeterminações\\
+    \\
+    \textbf{Exemplos:} $\displaystyle \lim_{x \to 2} (3x - 1) = 3 \cdot 2 - 2= 6 - 2 = 5$\\
+    Perceba que substituímos o valor de $a$ do limite na lei de formação da função
+    \\[10pt]
+    \textbf{CUIDADO: Saiba diferenciar polinômios de funções racionais!}
+    \\
+    \hrule
+    \textbf{ATENÇÃO, os teoremas a seguir só são válidos se:} \( \lim\limits_{x \to a} f(x) \) e \( \lim\limits_{x \to a} g(x) \) existem e \( C \in \mathbb{R} \) (C é apenas um número real qualquer). Será apresentada uma explicação resumida para cada propriedade
+    \\
+    \hrule
+    \item \begin{flushleft}
+a) \quad $\lim\limits_{x \to a} [f(x) + g(x)] = \lim\limits_{x \to a} f(x) + \lim\limits_{x \to a} g(x)$ \\[10pt] Isso quer dizer, calcular o limite da soma de duas funções é o mesmo que calcular o limite de cada uma das funções, e depois somar, simples assim\\[10pt]
+b) \quad $\lim\limits_{x \to a} [c \cdot f(x)] = c \cdot \lim\limits_{x \to a} f(x)$ \\[10pt]
+Quer dizer que, calcular o limite do produto de uma função por um escalar (um número qualquer) é a mesma coisa que calcular o limite da função, e depois multiplicar pelo número, mesma ideia do caso anterior\\[10pt]
+c) \quad $\lim\limits_{x \to a} [f(x) \cdot g(x)] = \lim\limits_{x \to a} f(x) \cdot \lim\limits_{x \to a} g(x)$ \\[10pt] Ou seja, calcular o limite do produto de duas funções é a mesma coisa que calcular o limite das duas funções, e depois multiplicar. De novo, mesma ideia do caso anterior\\[10pt]
+d) \quad $\lim\limits_{x \to a} [f(x)]^n = \left( \lim\limits_{x \to a} f(x) \right)^n$ \\[10pt] Logo, calcular o limite de uma função elevada a um valor n é a mesma coisa que calcular o limite, e depois elevar o resultado ao mesmo valor n. Mesmíssima ideia dos casos anteriores\\[10pt]
+e) \quad $\lim\limits_{x \to a} \sqrt[n]{f(x)} = \sqrt[n]{\lim\limits_{x \to a} f(x)}$ \\[10pt] Então, calcular o limite da raiz enésima de uma função é a mesma coisa que calcular o limite da função, e depois a raiz (com o mesmo índice) do resultado desse limite. \\[10pt]
+f) \quad $\lim\limits_{x \to a} \ln(f(x)) = \ln\left(\lim\limits_{x \to a} f(x)\right)$ \\[10pt] Ou seja, você pode calcular o ln da função, e depois aplicar o limite, ou, primeiro você aplica o limite e depois calcula o ln\\[10pt]
+\textbf{Até aqui, você já deve ter percebido que limites são algebricamente interessantes, porque as operações tem uma certa comutatividade. Isso facilita muito os cálculos, essas propriedades são muuuuito úteis.} Vamos apresentar ainda mais algumas propriedades, que segue a mesma lógica das anteriores\\[10pt]
+g) \quad $\lim\limits_{x \to a} [\sin f(x)] = \sin \left(\lim\limits_{x \to a} f(x)\right)$ , \textbf{mesmo vale para o cosseno}\\[10pt]
+h) \quad $\lim\limits_{x \to a} e^{f(x)} = e^{\lim\limits_{x \to a} f(x)}$
+\end{flushleft}
+    
+\end{enumerate}
+
+\section{Teorema do Sanduíche (ou Teorema do Confronto)}
+O Teorema do Sannduíche nos diz:
+\\[10pt]
+$f(x) \leq g(x) \leq h(x)$ para todo $x$ em algum intervalo aberto contendo $a$, e $\displaystyle \lim_{x \to a} f(x) = L = \displaystyle \lim_{x \to a} h(x)$, então $\displaystyle \lim_{x \to a} g(x) = L$
+\\[10pt]
+Imagina um sanduíche com 2 pães, $f(x)$ e $h(x)$, e um recheio $g(x)$. Se os pães vão para o mesmo ponto $L$, o recheio não tem para onde fugir: ele também vai para o mesmo ponto $L$. \textbf{Explicando de outra forma}, se você conhece os limites de 2 funções, $f$ e $h$, e o limite de ambas $f$ e $h$ são iguais a um mesmo valor $L$, então qualquer função $g$ entre $f$ e $h$ terá como limite o mesmo valor $L$. Ou seja, o limite da função ``do meio" é igual ao limite das funções que a aprisionam
+\\[10pt]
+Esse teorema é muito útil para encontrar um limite já sabendo outros dois. Você consegue determinar limites complicados analisando limites mais simples, caso o limite dessa função mais complicada esteja entre os limites das funções mais simples, claro
+
+\subsection{Teorema do Sanduíche de um Pão Só}
+Este é um caso especial e mais simples do Teorema do Sanduíche
+
+\section{Limites Laterais}
+Os limites laterais são limites que se aproximam de um ponto $x_{0}$ vindo de valores maiores ou menores que $x_{0}$. Quando um limite global não existe em um ponto, ou quando uma função não está definida em parte do domínio, o conceito de limites laterais é fundamental
+\\[10pt]
+\textbf{Se os limites laterais forem iguais entre si, significa que o limite global existe. Ou, se o limite global existe, significa que os laterais são iguais}
+\\[10pt]
+Já vou falando logo de cara, não tem fórmula exata pra calcular limites laterais, tipo, se você tem casos como esses:
+\[
+\lim_{x \to 1^-} \frac{1}{x - 1} \quad \text{e} \quad \lim_{x \to 1^+} \frac{1}{x - 1}
+\]
+e você tem que determinar o valor do limite para X vindo pela direita (+) e da esquerda (-), a única forma de determinar o resultado do limite é raciocinando mesmo, não tem fórmula exata. Basicamente, calcule o valor numérico do limite, como você faria se fosse um limite "normal", mas depois de calcular, tente entender o que acontece em valores próximos ao do limite. Vamos ver outro exemplo
+\[
+f(x) = 
+\begin{cases} 
+\frac{-|x|}{x} & \text{se } x \neq 0 \\
+1 & \text{se } x = 0 
+\end{cases}
+\]
+Mesma ideia do caso anterior. Pense no que aconteceria se valores menores que zero fossem inseridos. Se esse fosse o caso, o valor do módulo seria 1, logo, o resultado do limite tendendo a zero seria 1. Agora, se valores maiores do que zero fossem inseridos, teríamos que o resultado do módulo seria -1, logo o valor do limite seria -1. Logo:\\[10pt]
+\begin{center}
+$x > 0 \xrightarrow{} f(x) = -1$
+\\[5pt]
+$x \leq 0 \xrightarrow{} f(x) = 1$
+\end{center}
+
+\section{Expressões Indeterminadas}
+Quando as seguintes expressões aparecem, significa que temos um valor indeterminado\\[10pt]
+$\frac{0}{0},\quad \frac{\infty}{\infty},\quad \infty -\infty,\quad 0 \cdot \infty,\quad 0^{0},\quad \infty^{0}, \quad 1^{\infty}$
+\\[10pt]
+Quando essas expressões aparecem, algum tipo de manipulação algébrica terá que ser realizado para simplificar a expressão, e então determinar o valor. Agora, será apresentado manipulações algébricas comuns que podem resolver indeterminações
+\begin{itemize}
+    \item \textbf{Racionalização}
+    Para racionalizar o numerador e/ou o denominador, basta multiplicar em cima e em baixo pelo conjugado da expressão irracional\\
+    \textbf{Relembrando: O que é o conjugado?}\\
+    O conjugado de uma expressão é a expressão com o sinal trocado
+    \item \textbf{Produtos Notáveis}
+    \item \textbf{Manipulações Algébricas Comuns (ex: Transformar raiz em potência}
+\end{itemize}
+
+\section{Limites no Infinito e Limites Infinitos}
+
+\subsection{Operações com Valores Infinitos}
+Quando estamos analisando \textbf{especificamente operações com $\pm\infty$ em limites} (isto é, essas regras se aplicam em sua maioria apenas no cálculo) temos as seguintes proposições\\[10pt]
+Onde $k$ é um número real qualquer
+\[
+\Large
+\begin{array}{|l|l|}
+\hline
++ \infty + \infty = + \infty & \pm \infty \cdot 0 \text{ é indeterminação} \\ \hline
+(+ \infty) - (+ \infty) \text{ é indeterminação} & \frac{k}{\pm \infty} = 0 \\ \hline
++ \infty + k = + \infty & \frac{\pm \infty}{\pm \infty} \text{ é indeterminação} \\ \hline
+- \infty + k = - \infty & \frac{k}{0^+} = + \infty, \, k > 0 \\ \hline
+(+ \infty) \cdot (+ \infty) = + \infty & + \infty / 0^+ = + \infty \\ \hline
+(+ \infty) \cdot (- \infty) = - \infty & \frac{k}{0^-} = - \infty, \, k > 0 \\ \hline
++ \infty \cdot k = + \infty, \, k > 0 & + \infty / 0^- = - \infty \\ \hline
++ \infty \cdot k = - \infty, \, k < 0 & \frac{0}{0} \text{ é indeterminação} \\ \hline
+\end{array}
+\]
+Vamos utilizar muito essas propriedades
+
+\subsection{Limites no Infinito}
+\textbf{Limites no infinito são limites que tendem a valores infinitos} ($\pm\infty$). Estes limites tem propriedades e características particulares. Vamos entender cada uma delas
+\begin{center}
+$\displaystyle \lim_{x \to \pm\infty} \frac{1}{x^{n}} = 0$
+\end{center}
+Essa propriedade diz que 1 \textbf{(ou qualquer número)} dividido por $\pm\infty$ resulta em \textbf{zero}
+\\[10pt]
+\textbf{Como Resolver Limites no Infinito Indeterminados do tipo $\frac{\infty}{\infty}$ ou $\frac{0}{0}$:} O método principal para eliminar indeterminações nos limites no infinito consiste em dividir ambos numerador e denominador da fração \textbf{pelo termo de maior grau}, isso é, pelo termo com maior expoente. Exemplo:\\[10pt]
+$\displaystyle \lim_{x \to \pm\infty} \frac{2x - 5}{x + 8}$\\[10pt]
+Note que aqui, o termo de maior grau é o $x$, logo, podemos dividir em cima e em baixo por $x$\\[10pt]
+$\displaystyle \lim_{x \to \pm\infty} \frac{\frac{2x}{x} - \frac{5}{x}}{\frac{x}{x} + \frac{8}{x}}$ , desenvolvendo, $\displaystyle \lim_{x \to \pm\infty} \frac{2 - \frac{5}{x}}{1 + \frac{8}{x}}$\\[10pt]
+Agora que a expressão foi desenvolvido, podemos aplicar o limite sem gerar indeterminações\\[10pt]
+$\displaystyle \lim_{x \to \pm\infty} \frac{2 - \frac{5}{\infty}}{1 + \frac{8}{\infty}}$ , utilizando a propriedade $\displaystyle \lim_{x \to \pm\infty} \frac{1}{x^{n}} = 0$ , temos que a expressão final é $\displaystyle \lim_{x \to \pm\infty} \frac{2}{1} = 2$\\[10pt]
+
+\noindent\textbf{Importante:} O limite no infinito de funções trigonométricas não existe. Isso ocorre porque essas funções oscilam indefinidamente no infinito, logo não se pode precisar um valor
+
+\subsection{Limites Infinitos}
+\textbf{Limites infinitos são aqueles que resultam em $\pm\infty$}. Assim como os limites no infinito, eles possuem propriedades particulares que vamos explorar\\[10pt]
+Se \( n \) é um inteiro positivo, então
+\[
+\lim_{x \to 0^+} \frac{1}{x^n} = +\infty
+\quad \text{e} \quad
+\lim_{x \to 0^-} \frac{1}{x^n} = 
+\begin{cases} 
++\infty, & \text{se } n \text{ é par} \\
+-\infty, & \text{se } n \text{ é ímpar}.
+\end{cases}
+\]
+\textbf{O que esse teorema nos diz:} O quociente da divisão de um número qualquer (no caso 1) por um valor que tende a \textbf{zero}, tende ao infinito. Isso ocorre pois a medida que o denominador de uma fração tende a zero, seu numerador aumenta, já que dividir um número por valores menores que 1 fazem o quociente dessa divisão aumenta
+\\[10pt]
+Para descobrir o sinal do infinito, você deve analisar o sinal da expressão. Literalmente, pense no que acontece, analise, use lógica pra entender o que acontece com o sinal conforme ele tende ao infinito\\[10pt]
+\textbf{Atenção: Tome cuidado com funções modulares}
+\\
+Veja o seguinte limite como exemplo\\[10pt]
+$\displaystyle\lim_{x \to 0} \frac{|x|}{x^{2}}$ Nesse limite em particular, ambos os limites laterais tendem a um mesmo valor, logo, o limite global existe, e nesse caso é +$\infty$. Porém, em muito casos, o módulo faz com que os limites laterais sejam diferentes, então, \textbf{cuidado}
+\subsection{Regra do termo Dominante}
+Essa é uma propriedade que nos permite resolver \textbf{limites no infinito} com mais facilidade\\[10pt]
+\textbf{O que a Regra do Termo Dominante diz:} Quando calculamos o limite de uma função racional no infinito (\( x \to \infty \) ou \( x \to -\infty \)), o valor do limite é determinado apenas pelo termo de maior grau (ou seja, maior expoente) do numerador e do denominador. Caso não seja uma fração, simplesmente do termo de maior grau. Os termos de menor grau podem ser desprezados porque crescem mais lentamente\\[10pt]
+\textbf{Exemplo de aplicação:}\\[10pt]
+Para calcular o limite:
+\[
+\lim_{x \to \infty} \frac{5x^4 + 3x^2 + 2}{2x^4 + 7x + 1}
+\]
+O termo dominante no numerador é \(5x^4\) e no denominador é \(2x^4\). Então:
+\[
+\lim_{x \to \infty} \frac{5x^4}{2x^4} = \frac{5}{2}
+\]
+\textbf{Por que isso funciona?}\\À medida que x cresce indefinidamente, tendendo ao infinito, os termos de menor grau se tornam insignificantes em comparação ao termo de maior grau, que cresce muito mais rápido. Por isso, apenas o termo dominante influencia o valor do limite.
+
+\section{Continuidade de Funções}
+Uma função $f$ é contínua em $x = a$ ($a$ é simplesmente um valor do domínio, um número real qualquer) se:
+\[
+\lim_{x \to a} f(x) = f(a)
+\]
+
+\noindent \textbf{OBS:} Se não existirem $f(a)$ ou $\displaystyle\lim_{x \to a} f(x)$, $f$ não será contínua.
+\\[10pt]
+Ou seja, o que esse teorema quer dizer é: Se o limite da função tendendo a $a$, e o valor da função $f$ no ponto $a$ forem iguais, a função é contínua naquele ponto. Se os valores forem diferentes OU se o limite ou $f(a)$ nem existirem, a função não é contínua no ponto
+\\[10pt]
+Outra forma de se verificar se uma função é contínua é analisando os limites laterais. Se os limites laterais de $f$ forem iguais em um ponto $a$, então $f$ é contínua em $a$
+\\[10pt]
+\textbf{Se uma função não for contínua em TODOS os pontos de seu domínio, ela por definição não é contínua. Se houver ao menos um ponto onde a função não é contínua, ela é chamada descontínua (ou mais comum chamar de ``não contínua")}\\[10pt]
+Ainda falta entendermos como se determina se uma função é contínua ou não a partir da análise de seu gráfico
+
+\subsection{Propriedades de Funções Contínuas}
+\begin{itemize}
+
+    \item Toda e qualquer função polinomial é contínua. Funções polinomiais são contínuas em todos os pontos do conjunto dos números reais
+
+    \item Se \( f \) e \( g \) são contínuas em \( x = a \), também serão contínuas: \( f + g \), \( f - g \), \( f \cdot g \) e \( \frac{f}{g} \) (\( g \neq 0 \)); Em resumo, operações básicas entre funções contínuas continuam contínuas
+    
+    \item As funções polinomiais, \( \sin x \) e \( \cos x \) são contínuas para todo \( x \in \mathbb{R} \);
+    
+    \item Funções racionais são contínuas em todo o seu domínio.
+    
+    \item \( y = a^x \) é contínua para todo \( x \in \mathbb{R} \) (\( a > 0 \) e \( a \neq 1 \)).
+
+    \item Se \( f \) é contínua em \( a \) e \( g \) é contínua em \( f(a) \), então a função composta \( g \circ f \) é contínua em \( a \).
+
+    \item Se \( f: I \to J \) é contínua em \( I \), então, caso exista, \( f^{-1}: J \to I \) é contínua em \( J \). Isso quer dizer que a inversa de uma função contínua também é contínua
+\end{itemize}
+\textbf{Exercícios de aplicação das propriedades:}
+\\[10pt]
+\textbf{A)} \( f(x) = \frac{x^2 - 3x + 7}{x^2 + 1} \) \quad É contínua em \(x = 2\)?\\[10pt] \textbf{Resposta:} Sim, pois é uma função polinomial. Também, dado que não existe nenhum valor que faça o denominador ser zero, não só a função é contínua em 2, ela é continua em qualquer valor de $\mathbb{R}$
+\\[10pt]
+\textbf{B)} \( f(x) = \frac{1 + \cos x}{3 + \sin x} \) \quad É contínua em \( \mathbb{R} \)?\\[10pt] \textbf{Resposta:} Sim, porque as funções $\sin$ e $\cos$ são contínuas, e a divisão de duas funções contínuas contínua sendo contínua. Também não existe nenhum valor que faça o denominador valer zero, logo, devido a tudo que foi dito, a função é contínua em qualquer ponto, qualquer valor de $\mathbb{R}$
+\vspace{10pt}
+\hrule
+\section{Teorema do Valor Intermediário}
+\textbf{PS: Não confundir com Teorema do Valor Médio}
+\\[10pt]
+O \textbf{Teorema do Valor Intermediário} diz o seguinte:
+\\[10pt]
+Se você tem uma função contínua \( f(x) \) em um intervalo \([a, b]\), ela vai passar por todos os valores entre \( f(a) \) e \( f(b) \)
+\\[10pt]
+Formalizando, se $f$ é contínua num intervalo $[a, b]$, e $L$ é um número entre $f(a)$ e $f(b)$ , inclusive, então existe $c \in [a, b]$ tal que $f(c) = L$
+\\[10pt]
+\textbf{O que isso significa?}
+\\[10pt]
+Imagine que você está em um prédio e sobe do 2º andar (\( f(a) = 2 \)) até o 8º andar (\( f(b) = 8 \)). Se você subir continuamente (sem pular andares), em algum momento você vai passar por todos os andares intermediários: 3º, 4º, 5º, 6º e 7º.
+\\[10pt]
+\textbf{Aplicação matemática}
+\\[10pt]
+Se você quiser saber se existe um valor \( c \) no intervalo \([a, b]\) tal que \( f(c) = k \) (um valor entre \( f(a) \) e \( f(b) \)), o teorema garante que esse valor \( c \) existe, desde que a função seja contínua e \( k \) esteja entre \( f(a) \) e \( f(b) \).
+\\[10pt]
+\textbf{Exemplo prático}
+\\[10pt]
+Suponha que \( f(a) = 1 \) e \( f(b) = 5 \). Se você quiser saber se existe algum ponto onde \( f(x) = 3 \), o teorema diz que sim, porque \( 3 \) está entre \( 1 \) e \( 5 \).
+\\[10pt]
+Isso só funciona se a função não tiver ``buracos'' ou saltos no intervalo. É por isso que a continuidade da função é importante
+\\[10pt]
+\textbf{Resumindo}
+\\[10pt]
+Se uma função contínua vai de um valor até outro em um intervalo, ela vai passar por todos os valores intermediários entre esses dois pontos
+\subsection{Consequência}
+Se $f(a)$ e $f(b)$ tiverem sinais opostos, a função terá raiz em $[a, b]$. Isto é, haverá um $c$ tal que $f(c) = 0$
+\\[10pt]
+\textbf{Exemplos de aplicação:}
+\\[10pt]
+\textbf{a) Prove que $x^{3} + 3x^{2} - 5$ tem pelo menos uma raiz real}
+\\[10pt]
+A nossa ideia será encontrar dois valores no domínio de $f(x) = x^{3} + 3x^{2} - 5$ que resultem em números com sinais opostos, já que a propriedade anterior nos garante que se isso ocorrer, há uma raiz. Podemoa aplicar essa propriedade porque sabemos que $f(x) = x^{3} + 3x^{2} - 5$ é contínua, já que é uma função polinomial
+\\[10pt]
+Comece sempre testando com 1. Fazendo os cálculos, temos que $f(1) = -1$. Chutando outro valor, 2, temos que $f(2) = 15$. Olha só, sinais opostos! Logo, há uma raiz entre 1 e 2, portanto $x^{3} + 3x^{2} - 5$ tem pelo menos uam raiz real
+\\[10pt]
+\textbf{b) Existe algum número real que seja igual a soma entre seu cubo, seu quadrado e 1?}
+\\[10pt]
+Para resolver esse problema, primeiramente, reescreva o que foi dito em linguagem matemática. \emph{"algum número real que seja igual a soma entre seu cubo, seu quadrado e 1} em linguagem matemática é $x = x^{3} + x^{2} + 1$
+\\[5pt]
+Agora que temos essa expressão, basta igualar ela a zero, juntando todas as incógnitas em um membro. Assim: $x^{3} + x^{2} - x + 1 = 0$
+\\[5pt]
+Pronto, agora é só achar 2 valores com sinais opostos, e provamos que essa função tem raiz 
+\vspace{15pt}
+\hrule
+\section{Limites Fundamentais}
+Limites fundamentais são, essencialmente, propriedades ("fórmulas") que te permitem resolver limites que já tenham uma forma conhecida. Os limites fundamentais são:
+\begin{itemize}
+\item$\displaystyle \lim_{x \to 0} \frac{\sin x}{x} = 1$
+\item$\displaystyle \lim_{x \to 0} \frac{e^x - 1}{x} = 1$
+\item$\displaystyle \lim_{x \to 0} \frac{\ln(1 + x)}{x} = 1$
+\item$\displaystyle \lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e$
+\end{itemize}
+A ideia na maioria dos casos é forçar o aparecimento desses limites, quando possível. \textbf{Veja alguns exemplos:}\\[10pt]
+$\displaystyle \lim_{x \to 0} \frac{\sin 3x}{\sin 4x}$ , aqui, podemos forçar o aparecimento do limite fundamental $\displaystyle \lim_{x \to 0} \frac{\sin x}{x} = 1$ , observe\\[10pt]
+$\displaystyle \lim_{x \to 0} \frac{\frac{\sin 3x}{3x}\cdot3x}{\frac{\sin 4x}{4x}\cdot4x}$ , perceba que apenas dividimos e multiplicamos os temos por uma mesmo valor, forçando o aparecimento de uma fração que pode ser resolvida pelo limite fundamental
+\vspace{15pt}
+\hrule
+\section{Funções Limitadas (Bounded Functions)}
+\textbf{Atenção:} Não confundir com ``funções em que o limite existe". Uma função ter um limite que existe é uma coisa, a função ser limitada é outra
+\\[10pt]
+Uma função limitada tem seus valores sempre dentro de um intervalo fixo. Isso é, seus valores não ultrapassam certos limites (superior e inferior). Uma função contínua em um intervalo fechado e limitado é sempre limitada nesse intervalo
+
+\subsection{O conceito de função que ``explode":} Uma função que ``explode" é aquela que \textbf{não é limitada e cresce indefinidamente}, ou seja, seus valores
+tendem ao infinito\\[10pt]
+Por exemplo, a função:
+\[
+f(x) = x^2
+\]
+``explode" quando \(x \to \infty\), pois seus valores aumentam sem limites. Formalmente, dizemos que:
+\[
+\lim_{x \to \infty} f(x) = \infty
+\]
+Isso significa que \(f(x)\) não possui um limite finito e não é limitada superiormente, ``explode"
+\subsection{Limite Superior e Inferior}
+
+\begin{itemize}
+    \item \textbf{Limitada inferiormente}: Os valores da função nunca são menores que um certo número \( m \). Ou seja, \( f(x) \geq m \) para todos \( x \). 
+    \begin{itemize}
+        \item Exemplo: \( f(x) = x^2 \) é limitada inferiormente por 0 (os valores nunca são negativos).
+    \end{itemize}
+
+    \item \textbf{Limitada superiormente}: Os valores da função nunca são maiores que um certo número \( M \). Ou seja, \( f(x) \leq M \) para todos \( x \).
+    \begin{itemize}
+        \item Exemplo: \( f(x) = \sin(x) \) é limitada superiormente por 1 (os valores nunca passam de 1).
+    \end{itemize}
+\end{itemize}
+
+Se for \textbf{limitada nos dois sentidos}, ela é \textbf{simplesmente limitada}!
+\\[10pt]
+O exemplo mais famoso de função limitada nos dois sentido é a função \( \sin(x) \)
+\\[10pt]
+\textbf{Limite superior}: \( \sin(x) \leq 1 \). O valor máximo da função seno é \( 1 \).
+\\[5pt]
+\textbf{Limite inferior}: \( \sin(x) \geq -1 \). O valor mínimo da função seno é \( -1 \).
+\\[10pt]
+Portanto, todos os valores de \( \sin(x) \) estão no intervalo \( [-1, 1] \), o que faz dela uma \textbf{função simplesmente limitada} (entre [-1, 1])
+
+\vspace{15pt}
+\hrule
+\section{Derivadas}
+
+\subsection{Noção Intuitiva de Derivada}
+Toda reta é do tipo $y = mx + n$ , onde $m$ é a declividade da reta. $m$ é chamado de ``coeficiente angular". Nós sempre podemos achar uma reta tangente a um ponto
+\\[10pt]
+Ou seja, \textbf{geometricamente} a derivada representa a declividade da reta tangente em um dado ponto
+
+\subsection{Definição Formal de Derivada}
+Para obter a definição formal de derivada, utilizamos limites
+\\[10pt]
+A ideia é aproximar os pontos de uma reta secante (reta que ``corta" uma função em 2 pontos) através do limite, e assim, obter uma reta tangente a um ponto
+\\[10pt]
+\textbf{Lembre-se:}
+\\[10pt]
+A inclinação de uma reta em graus (\(\theta\)) varia entre \(0^\circ\) e \(360^\circ\). No entanto, o coeficiente angular (\(m\)), que é a tangente desse ângulo, pode assumir qualquer valor real:
+\[
+m = \tan(\theta)
+\]
+Logo, os valores de derivadas não são limitados
+
+\subsection{Conceitos Importantes}
+Vamos apresentar alguns conceitos importantes para a compreensão das derivadas
+\begin{itemize}
+    \item \textbf{Funções Deriváveis (ou diferenciáveis) x Não Deriváveis}\\[10pt]
+    Uma função é considerada derivável se a derivada existe em \textbf{TODOS} os pontos de seu domínio. Caso a derivada não exista em um único ponto da função, ela imediatamente é considerada \textbf{não derivável}. Ou seja, mesmo que a derivada exista em QUASE todos os pontos da função, basta a derivada não existir em \textbf{1 (um)} único ponto, e já era, não é mais considerada derivável\\[10pt]
+    Temos também um termo particular para uma função não for derivável em mais de um ponto, isso é, a função é toda "problemática". Diz-se que ela \textbf{não é derivável em seu domínio}. Perceba que é diferente de dizer apenas \textbf{``não derivável"}
+    \\[5pt]
+    \textbf{Toda função diferenciável é contínua, mas nem toda função contínua é diferenciável, lembre disso}
+
+    \item É importante saber a diferença entre calcular a derivada em um ponto, e calcular a expressão que gera as derivadas nos pontos\\[10pt] Para calcular a derivada em um ponto, você usa a definição de derivada. Para calcular a expressão que gera um derivada, você utiliza as regras de derivação
+\end{itemize}
+\vspace{15pt}
+\hrule
+
+\section{Velocidade Instantânea}
+É recomendável que você calcule a velocidade instantânea utilizando a definição de derivada, assi, você terá uma noção melhor do que está sendo feito de fato, da pra entender a lógica melhor
+\\[10pt]
+Dado uma função que define a velocidade média, se você fizer o intervalo de tempo $x$ tender a zero, você obtém a velocidade instantânea. O limite que faz isso acontecer é literalmente o limite que define a derivada dessa função de velocidade média, ou seja, a velocidade instantânea é a derivada da vel. média
+\vspace{15pt}
+\hrule
+\section{Determinando a Equação da Reta Tangente a um Ponto}
+Calcule a derivada e aplique na euqação da reta $y = mx + n$ , sabendo que a derivada representa o valor de $m$
+\\[10pt]
+Em suma, se pede pra achar a tangente de uma função $f(x)$ em um ponto $x = 2$, calcule $f(2)$ pra achar o par ordenado $[x, y]$, no caso, $[2, f(2)]$, derive a função $f(x)$, calcule $f'(2)$. Agora aplique na equação da reta $y = mx + n$. Ainda falta o $n$, e o $n$ é dado por $y - m$
+\\[10pt]
+\textbf{Exemplos:}
+\\[10pt]
+\textbf{a) Determinar a equação da reta tangente a $f(x) = x^{2} - 4$ em $x = 2$}
+\vspace{15pt}
+\hrule
+\section{Regras de Derivação}
+Calcular derivadas utilizando a sua definição seria muito trabalhoso. Por isso, foram criadas regras e propriedades que são capazes de resolver derivadas sem precisarem se apoiar totalmente na definição, assim como fazemos para calcular limites
+\subsection{Regras Básicas}
+\begin{itemize}
+    \item \textbf{A derivada de uma constante sempre é zero.}\\[10pt]A constante pode ser qualquer número real, 1, 10, 297, 9999, $\sqrt{2}$, $\pi$, não importa, valores constantes derivados sempre resultarão em \textbf{zero}\\[10pt]
+    Exemplos:\\$f(x) = 5 \xrightarrow{} f'(x) = 0$\\$f(x) = -15 \xrightarrow{} f'(x) = 0$\\$f(x) = 4 \pi + 8 \xrightarrow{} f'(x) = 0$\\$f(x) = \frac{\pi \cdot \sqrt{2} + e}{\ln 3 - \frac{1}{\sqrt{5}}} \xrightarrow{} f'(x) = 0$
+
+    \item \textbf{Regra do Monômio (``Regra do Tombo")}\\[10pt]
+A Regra do Tombo é utilizada para calcular a derivada de potências. Seja \( f(x) = x^n \). A derivada de \( f(x) \) em relação a \( x \) é dada por:
+
+\[
+f'(x) = n \cdot x^{n-1}
+\]
+
+onde \( n \) é um número real qualquer.\\[10pt]Basicamente, o que a famosa ``Regra do Tombo" diz é: Pra calcular a derivada da potência de um monômio, subtraia 1 do expoente, e passe o expoente  mutiplicando o monômio
+
+\item \textbf{Regra do Produto}
+Quando você tiver duas funções mutiplicadas, você utilizará a regra do produto para determinar a derivada. Seja \( f(x) \) e \( g(x) \) duas funções deriváveis. A derivada do produto \( f(x) \cdot g(x) \) é dada por:
+
+\[
+(f \cdot g)'(x) = f'(x) \cdot g(x) + f(x) \cdot g'(x)
+\]
+\noindent Resumindo, $(f \times g)'$ é igual a derivada de $f$ vezes $g$, mais $f$ vezes a derivada de $g$
+
+\item \textbf{Regra do Quociente}
+Quando você tiver a divisão de duas funções, você utilizará a regra do quociente para determinar a derivada. A \textbf{regra do quociente} é utilizada para derivar o quociente de duas funções, funções estas diferenciáveis, claro\\[10pt]
+Seja \(h(x) = \frac{f(x)}{g(x)} \), onde \( f(x) \) e \( g(x) \) são funções deriváveis. Então, a derivada dessa função é dada por:
+\[
+h(x)' = \frac{f' \cdot g - f \cdot g'}{g^2}
+\]
+\textbf{ATENÇÃO:} Não é porque há uma fração que temos que utilizar a regra do quociente necessariamente. Exemplo: $f(x) = \frac{x^{4}}{4}$ , em um caso como esse, não temos um polinômio no denominador, $\frac{1}{4}$ é apenas uma constante multiplicando $x^{4}$, logo, aquela expressão pode ser escrita como $\frac{1}{4} \cdot x^{4}$, e então derivada sem a necessidade do uso da regra do quociente. \textbf{Portanto, lembre-se, a regra do quociente só é útil quando temos o quociente de duas FUNÇÕES POLINOMIAIS}
+\end{itemize}
+\vspace{15pt}
+\hrule
+\section{Regra da Cadeia}
+\textbf{PS: Essa é uma regra de derivação que já é um pouco mais complexa, portanto exige uma seção dedicada apenas para ela}\\[10pt]
+A Regra da Cadeia é uma propriedade que nos permite derivar funções compostas. \textbf{Ela consiste em derivar ``de dentro pra fora", e depois multiplicar essas derivadas.} Você basciamente quebra uma função grande em uma composição de funções menores, deriva todas elas, e multiplica. Formalizando o que foi dito:\\[10pt]
+Seja \( y = f(u) \) e \( u = g(x) \). Então:
+
+\[
+y' = f'(u) \cdot u'
+\]
+
+\noindent \textbf{Importante:} A Regra da Cadeia pode e \textbf{deve} ser utilizada para \textbf{simplificar} a resolução de derivações. Ou seja, você deve se aproveitar da Regra da Cadeia para \textbf{quebrar funções complexas em funções compostas mais simples}\\[10pt]
+\textbf{Exemplos:}\\[10pt]
+\quad \( y = (x^2 - 5x + 7)^7 \)\\[10pt]
+Observe que nessa expressão temos um polinômio que está sendo elevado a um expoente, no caso, 7. Podemos tratar essa expressão como uma composição de funções, onde o polinômio \( y = (x^2 - 5x + 7)\) é uma função $f(x)$, e esse mesmo polinômio elevado a 7, que seria \( y = (x^2 - 5x + 7)^7 \) , é uma outra função, $g(x)$. Seguindo esse raciocínio, basta derivar a função $f$, derivar também a função $g$, e multiplicar as duas
+
+\subsection{Substituição de Variável}
+Para simplificar expressões, principalmente se tratando da Regra da Cadeia, é muito utilizado o método de simplificação conhecido como substituição de variável
+\\[10pt]
+Esse método consiste em substituir um termo ou expressão por uma função (ou seja, por uma letra) que represente ele
+\\[10pt]
+\textbf{Veja um exemplo de uso desse método:}\\[10pt]
+Se \( f(x) = (2x + 3)^2 \), você pode chamar \( u = 2x + 3 \).
+\\[10pt]
+\noindent Então:
+\[
+f(x) = u^2 \quad \text{e a derivada é} \quad f'(x) = 2u \cdot u'.
+\]
+Agora volte para \( u = 2x + 3 \):
+\[
+f'(x) = 2(2x + 3) \cdot 2 = 4(2x + 3).
+\]
+\noindent Um caso de simplificação em que é praticamente obrigatório utilizar esse método é no caso de \textbf{simplificação de raízes}
+\\[10pt]
+\textbf{Aqui vai um exemplo:}
+\\[10pt]
+Se \( f(x) = \sqrt{2x + 3} \), fica difícil diferenciar diretamente
+\\[10pt]
+Então substituímos \( u = 2x + 3 \), então \( f(x) = \sqrt{u} \).
+\\[10pt]
+Derivamos \( \sqrt{u} \):
+\[
+f'(x) = \frac{1}{2\sqrt{u}}.
+\]
+
+\noindent Voltamos para \( u = 2x + 3 \) e multiplicamos pela derivada de \( u \):
+\[
+f'(x) = \frac{1}{2\sqrt{2x + 3}} \cdot 2 = \frac{1}{\sqrt{2x + 3}}.
+\]
+
+\noindent Sem utilizar o método de substituição, seria muito confuso lidar com a raiz e a derivada ao mesmo tempo
+\\[10pt]
+\textbf{Como saber qual propriedade utilizar primeiro?}
+\\
+Muitas vezes, temos expressões grandes e confusas, então não sabemos direito qual regra utilizar primeiro, produto, cadeia, quociente etc. Veja como exemplo a expressão $f(x) \cdot \sin((f(x))^3 + 1)$. Qual regra você aplica primeiro, regra da cadeia ou regra do produto? A resposta pra esse caso, e qualquer outro, é: Analise a operação mais externa, isto é, a operação "principal". Nesse caso, a operação "principal" é o produto entre $f(x)$ e $\sin((f(x))^3 + 1)$, logo, devemos utilizar a regra do produto \textbf{antes} da regra da cadeia. Em seguida, finalmente, utilizamos a regra da cadeia nas expressões resultantes da derivada daquele produto
+
+\vspace{15pt}
+\hrule
+\section{Derivada da Função Inversa}
+\textbf{[INCOMPLETO]} A derivada da inversa é 1 dividido pela derivada da função original, mas você precisa avaliar no valor da inversa $f^{-1}(x)$, ou seja, no ponto $x$, na função inversa
+\vspace{15pt}
+\hrule
+\section{Derivada de Funções Exponenciais e Logaritmicas}
+\textbf{Relembrando o que são funções exponenciais e logarítimicas:}
+\begin{itemize}
+\item\textbf{Funções Exponenciais}
+São funções da forma \( f(x) = a^x \), onde \( a > 0 \) e \( a \neq 1 \). A variável \( x \) está no expoente, e \( a \) é uma base constante. Essas funções descrevem crescimento ou decaimento exponencial, dependendo do valor de \( a \).
+
+\item\textbf{Funções Logarítmicas}
+São funções inversas das funções exponenciais, da forma \( f(x) = \log_a(x) \), onde \( a > 0 \) e \( a \neq 1 \). A função logarítmica responde à pergunta: \emph{A qual expoente devemos elevar a base \( a \) para obter \( x \)?}
+
+\item\textbf{Resumindo:}\\[10pt]
+\textbf{Exponenciais:} A variável está no expoente. Exemplo: \( 2^x \)\\[10pt]
+\textbf{Logarítmicas:} Inversas das exponenciais, com a variável dentro do logaritmo. Exemplo: \( \log_2(x) \).
+\end{itemize}
+
+\subsection{Derivada da Exponencial}
+Seja \( y = a^x \) \((a > 0 \text{ e } a \neq 1)\). Então:
+\[
+y' = a^x \cdot \ln a
+\]
+Talvez você esteja se perguntando: \textbf{Por que não simplesmente usar a regra do tombo?}
+\\[5pt]
+\textbf{Resposta:} Não podemos usar a Regra do Tombo pois ela só se aplica a funções do tipo $x^{n}$, ou seja, uma variável elevada a uma constante. No caso de $a^{x}$, ou $e^{x}$, temos uma constante elevada a uma variável. Logo, a regra do tombo não é aplicável
+\\[10pt]
+\textbf{Propriedades das funções exponenciais:}
+\begin{itemize}
+    \item $y = e^{x} \xrightarrow[]{} y' = e^{x}$\\[10pt]
+    O que essa propriedade diz é: A derivada de uma função $e^{x}$ não muda, continua sendo $e^{x}$\\[10pt]
+    \textbf{Explicando essa propriedade:} É simples. A base do logaritmo natural é o número de Euler $(e)$, importante relembrar. Dito isso, seguindo a fórmula da derivada da exp, temos qu a derivada da função $y = e^{x}$ é $y' = e^x \cdot \ln e$ . Porém, como esse $\ln$ tem base e logaritmando iguais (lembre-se que a base do $\ln$ é $e$) então, o resultado desse logaritmo é 1. Logo, temos apenas $y' = e^x \cdot 1$, que resulta em $e^{x}$
+\end{itemize}
+\vspace{15pt}
+\hrule
+
+\section{Cresimento e Decrescimento de Funções}
+Analise a derivada de primeira ordem em um intervalo [a, b], se ela for maior que zero é crescente, se não decresente. Pra determinar isso, você usa inequações
+\vspace{15pt}
+\hrule
+
+\section{Máximos e Mínimos (extremos)}
+Um ponto $c$ é máximo/mínimo local se a derivada \textbf{não existir} naquele ponto ou se $f(c)$ for menor/maior que $f(x)$. \textbf{Se a derivada for zero em um ponto, ele é um extremo local}, ou seja, todo máximo e mínimo é ponto crítico
+
+\vspace{15pt}
+\hrule
+
+\section{Pontos Críticos e Pontos de Inflexão}
+
+\subsection{Pontos Críticos}
+- Onde a derivada vale zero ou não existe\\
+- Pode indicar um máximo, mínimo ou \textbf{ponto de sela} (nós não estudamos sobre pontos de sela em cálculo 1)\\
+- Para calcular, calcule a primeira derivada  e iguale a zero ($f'(x) = 0$)\\
+- Resolve a equação para encontrar o valor de x. O resultado de x que você encontra é o ponto crítico.\\
+- Depois, pode usar a segunda derivada para saber se é um máximo, mínimo ou ponto de sela
+
+\subsection{Pontos de Inflexão}
+- É o ponto em que a concavidade muda de sentido\\
+- É onde a segunda derivada muda de sinal, ou seja, passa de positiva para negativa ou vice-versa\\
+- A curvatura da função muda, passando de côncava para convexa (ou vice-versa)\\
+- Para calcular, calcule a segunda derivada. Iguale a segunda derivada a zero ($f''(x) = 0$)e resolva a equação\\
+- O valor que você encontra \textbf{PODE SER} um ponto de inflexão\\
+- Para descobrir se é ou não é, verifique se a segunda derivada muda de sinal ao passar por x. Se muda, então é ponto de inflexão\\
+- Pra fazer isso, você pode usar inequações\\
+- Se a segunda derivada for zero em todos os pontos de x, então \textbf{NÃO EXISTE PONTO DE INFLEXÃO!} A derivada não troca de sinal ao longo de toda a função
+\vspace{15pt}
+\hrule
+
+\section{Retas Assíntotas}
+Sempre que o gráfico de uma função se aproximar muito de uma reta, a medida que o $x$ cresce muito/diminui muito, dizemos que a reta que limita o gráfico é uma assíntota. Assíntotas são semprem retas. A seguir, temos gráficos que mostram exemplos de assíntotas
+\begin{figure}[h]
+    \centering
+    \includegraphics{assintotas.png}
+    \caption{As funções de aproximam infinitamente das retas assíntotas, mas nunca tocam elas}
+\end{figure}
+
+\noindent \textbf{Temos 3 tipos de retas assíntotas}
+\begin{itemize}
+    \item Assíntotas verticais
+    \item Assíntotas horizontais
+    \item Assíntotas inclinadas (menos comuns)
+\end{itemize}
+Vamos aprender cada um deles
+
+\subsection{Assíntotas Verticais}
+Na definição formal de assíntota, temos que uma reta \( x = a \) (sim, a expressão $x = a$ define uma reta) é uma assíntota vertical de \( f(x) \), se ao menos um dos itens for verdadeiro:
+\begin{itemize}
+\item $\displaystyle \lim_{x \to a^+} f(x) = +\infty$
+
+\item $\displaystyle \lim_{x \to a^+} f(x) = -\infty$
+
+\item $\displaystyle \lim_{x \to a^-} f(x) = +\infty$
+
+\item $\displaystyle \lim_{x \to a^-} f(x) = -\infty$
+\end{itemize}
+Ou seja, se o limite tendendo a $a$, seja um limite lateral (esquerda ou direita) ou limite global resultar em $\pm\infty$, a reta $x = a$ é uma assíntota vertical\\[10pt]
+\textbf{Vale lembrar:} $x = a$ nada mais é do que uma reta. Em geometria analítica, a expressão $x = a$ representa uma reta \textbf{vertical} no plano cartesiano, que cruza o eixo $x$ no ponto $a$. Logo, algo como $x = 2$ seria uma reta vertical cruzando o eixo $x$ no ponto 2
+
+\subsection{Assíntotas Horizontais}
+A reta $y = b$ é uma assíntota horizontal de $f(x)$ se ao menos um dos itens for verdadeiro:
+\begin{itemize}
+\item $\displaystyle \lim_{x \to +\infty} f(x) = b$
+
+\item $\displaystyle \lim_{x \to -\infty} f(x) = b$
+\end{itemize}
+O que essa definição nos diz é: Se o limite de uma função tendendo a $\pm\infty$ resulta em um valor $b$, este valor $b$ é uma assíntota horizontal\\[10pt]
+\textbf{Lembrando:} $y = x$ é uma função que define uma reta \textbf{horizontal}. Parecido com $x = a$, que define uma reta vertical, $y = b$ define uma reta horizontal que corta o eixo y no ponto $b$
+
+\subsection{Assíntotas Inclinadas}
+A reta \( y = ax + b \) é uma \textbf{assíntota inclinada} de \( f(x) \) se ao menos um item for verdadeiro:
+\[
+\lim_{x \to +\infty} \left( f(x) - (ax + b) \right) = 0
+\]
+
+\[
+\lim_{x \to -\infty} \left( f(x) - (ax + b) \right) = 0
+\]
+
+\subsection{Propriedades das Assíntotas}
+As retas assíntotas te permitem descobrir o comportamento de uma função em um ponto, próximo ao ponto, ou até mesmo noo infinito. Elas te permitem esboçar um gráfico preciso da função
+\vspace{15pt}
+\hrule
+\section{Teorema de Rolle}
+Seja $f: [a, b] \xrightarrow{} \mathbb{R}$ uma função contínua, derivável em $(a, b)$ e com $f(a) = f(b)$. Então existe $c$ em $(a, b)$ tal que $f'(c) = 0$\\[10pt]
+O que o enunciado desse teorema nos diz é: Se uma função que atenda aqueles requisitos liga dois pontos, em algum ponto entre os 2 pontos que ela conecta, a derivada vale zero
+\vspace{15pt}
+\hrule
+
+\section{Teorema do Valor Médio}
+\textbf{Atenção: Não confundir com Teorema do Valor Intermediário}\\[10pt]
+O Teorema do Valor Médio o é uma generalização do Teorema de Rolle
+\vspace{15pt}
+\hrule
+
+\section{Polinômio de Taylor}
+A ideia é aproximar uma função complicada em torno de um número utilizando um polinômio. Ou seja, o polinômio vai te dar um valor muito próximo da sua função original. \textbf{A única condição para que possa ser usado polinômio de Taylor é que a função seja derivável $n$ vezes (infinitamente)}
+\\[10pt]
+A expressão do Polinômio de Taylor é dada por:
+\\[10pt]
+$P_n(c) = f(c) + f'(c)(x - c) + \frac{f''(c)(x - c)^2}{2!} + \cdots + \frac{f^{(n)}(c)(x - c)^n}{n!}$
+\\[10pt]
+O valor $n$ define o \textbf{grau} do Polinômio de Taylor, e o valor $c$ define onde o Polinômio de Taylor está \textbf{centrado}; E o valor onde ele está centrado define exatamente em torno de onde iremos aproximar a função
+\\[10pt]
+A ideia do polinômio de taylor é gerar uma \textbf{FUNÇÃO} que aproxima os valores pra um determinado ponto em que ele foi centrado, e não fornecer diretamente a aproximação ds valores. \textbf{Por isso, sempre deixe o $x$ como variável ao calcular o Polinômio de Taylor}. Ou seja, você só substitui o $x$ das funções por $c$ (valor em que o polinômio está sendo centrado)
+
+\section{Noções de Integral}
+Antes de entender o que são as integrais em si, vamos entender algumas coisas acerca do tema
+
+\section{Primitiva}
+$F(x)$ é chamada de primitiva de $f(x)$
+\\[10pt]
+\textbf{Proposição:} Se $F(x)$ é uma primitiva de $f(x)$ então, sendo $c$ uma constante, $F(x) + c$ também é uma primitiva de $f(x)$
+\\[5pt]
+\textbf{Consequência:} Se $F(x)$ e $G(x)$ são primitivas de $f(x)$, então $F(x) - G(x) = c$, para algum $c$ constante
+\\[10pt]
+Se $F(x)$ é a primitiva de $f(x)$, escreveremos $F(x) + c = \displaystyle \int f(x)dx$
+
+\section{Integração}
+
+\end{document}
