@@ -1,0 +1,259 @@
+\documentclass{article}
+\usepackage[portuguese]{babel}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Anotações de Pré Cálculo Não Renal}
+
+\begin{document}
+\maketitle
+
+\section{Coisas Muito Simples que Você Deveria Saber}
+\subsection{M.M.C}
+Pô esse aí é importante. Da pra descobrir muitas coisas usando o conceito de MMC, tipo, quando 2 eventos vão acontecer simultaneamente
+
+\vspace{15pt}
+\hrule
+
+\section{Macetes Gerais da Matemática}
+\subsection{Somar frações com números inteiros de forma rápida}
+Fácil! Basta multiplicar o inteiro pelo denominador e somar com o numerador. Isso será o numerador da fração resultante dessa soma, e o denominador você apenas repete\\[10pt]
+Em termos matemáticos, temos que: 
+\[
+a + \frac{b}{c} = \frac{a\times c + b}{c}
+\]
+\textbf{Veja um exemplo:}\\[10pt]
+$2 + \frac{8}{9}$ , multiplique o 2 (que é o inteiro) pelo 9 (denominador) e some com 8 (numerador)\\[10pt]
+$2 + \frac{8}{9} = \frac{2 \times 9 + 8}{9} = \frac{26}{9}$ , após o passo anterior, apenas repetimos o denominador na fração resultante da soma. Simples assim
+\vspace{15pt}
+\hrule
+
+\section{Trigonometria}
+
+\subsection{Trigonometria no Triângulo Retângulo}
+
+\subsection{Trigonometria na Circunferência}
+
+\subsection{Equações Trigonométricas}
+
+\vspace{15pt}
+\hrule
+
+\section{Fatoração de Polinômios}
+As fatorações de polinômios são uma forma de manipulação algébrica que permite simplificar ou reescrever polinômios como um produto de fatores menores. Isso facilita ao resolver equações, identificar raízes, analisar o comportamento do polinômio, realizar operações como divisão e integração de forma mais eficiente, dentre outras muitas utilidades.
+\\[10pt]
+\textbf{Temos diferentes casos de fatoração de polinômios, que serão apresentados a seguir}
+\subsection{Diferença de Dois Quadrados}
+Essa é muito fácil, é só isso:
+\[
+a^2 - b^2 = (a - b)(a + b)
+\]
+Sempre que tiver uma diferença entre dois números elevados ao quadrado, você pode aplicar essa propriedade, e quebrar a expressão em um produto de uma diferença por uma soma
+
+\subsection{Trinômio Quadrado Perfeito (TQP)}
+Quando você tem polinômios, mais especificamente, trinômios, que são polinômios com 3 termos, TALVEZ seja aplicável a fatoração por TQP. Esse caso de fatoração é aplicável somente se o trinômio tem a forma:
+\[
+a^2 \pm 2ab + b^2
+\]
+Ou seja, simplificando, se o trinômio satisfaz as seguintes condições:
+\begin{itemize}
+    \item O primeiro termo é um quadrado perfeito (\(a^2\)).
+    \item O terceiro termo é um quadrado perfeito (\(b^2\)).
+    \item O termo do meio é o dobro do produto das bases dos quadrados (\(\pm 2ab\)).
+\end{itemize}
+\textbf{Mas o que é um quadrado perfeito?}
+\\[10pt]
+Um \textbf{quadrado perfeito} é um caso especial onde o resultado da potência é um número inteiro ou uma expressão com raízes exatas. Em outras palavras, o valor do quadrado perfeito pode ser expresso como o quadrado exato de outro número ou expressão simples.
+\\[10pt]
+\textbf{Exemplos:}
+\begin{itemize}
+    \item \(4\) é um quadrado perfeito (\(2^2 = 4\)).
+    \item \(25\) é um quadrado perfeito (\(5^2 = 25\)).
+    \item \(x^2\) é um quadrado perfeito porque é o quadrado de \(x\).
+\end{itemize}
+Agora voltando ao tópico principal. A fatoração, se aplicável, terá a seguinte forma:
+\[
+a^2 \pm 2ab + b^2 = (a \pm b)^2
+\]
+\textbf{Exemplo:} \\
+\[
+x^2 + 6x + 9
+\]
+- \(x^2\) é um quadrado perfeito (\(x\)). \\
+- \(9\) é um quadrado perfeito (\(3\)). \\
+- \(6x = 2 \cdot x \cdot 3\). \\
+
+\textit{Fatoração:} \\
+\[
+x^2 + 6x + 9 = (x + 3)^2
+\]
+
+\subsection{Fator Comum em Evidência}
+A \textbf{fatoração por fator comum em evidência} é uma técnica utilizada para simplificar expressões algébricas onde os termos possuem um fator comum. O processo consiste em identificar o maior fator comum a todos os termos e colocá-lo em evidência, resultando em um produto entre o fator comum e o que resta da expressão original.
+
+\subsection*{Passos:}
+\begin{enumerate}
+    \item \textbf{Identificar o fator comum}: Procure um fator que apareça em todos os termos da expressão.
+    \item \textbf{Fatorar}: Extraia esse fator comum e escreva-o fora dos parênteses.
+    \item \textbf{Escrever a expressão fatorada}: Dentro dos parênteses, coloque os termos que restaram depois de dividir cada termo original pelo fator comum.
+\end{enumerate}
+
+\subsection*{Exemplo:}
+Dada a expressão \( 6x^2 + 9x \), o fator comum é \( 3x \). A fatoração será:
+
+\[
+6x^2 + 9x = 3x(2x + 3)
+\]
+
+\subsection{Fatoração por Agrupamento}
+A fatoração por agrupamento é uma técnica útil quando se trata de polinômios com quatro ou mais termos. O objetivo é agrupar os termos de forma que possamos fatorar fatores comuns dentro de cada grupo. Aqui está um resumo do processo:
+
+\begin{enumerate}
+    \item \textbf{Agrupar os termos}: Divida os termos do polinômio em dois grupos. Por exemplo, considere o polinômio \( ax + ay + bx + by \).
+    
+    \item \textbf{Fatorar os grupos}: Em cada grupo, extraia o fator comum. No exemplo acima, teríamos:
+    \[
+    a(x + y) + b(x + y)
+    \]
+    
+    \item \textbf{Fator comum}: Agora, observe que \( (x + y) \) é um fator comum entre os dois termos. Então, o polinômio pode ser fatorado como:
+    \[
+    (a + b)(x + y)
+    \]
+\end{enumerate}
+
+Essa técnica é especialmente útil em expressões mais complexas, onde o agrupamento leva a fatores comuns que não são evidentes à primeira vista.
+
+\subsection{Fatoração de Equações Quadráticas Complicadas}
+A fórmula de Bhaskara (ou fórmula quadrática) é usada para resolver a equação quadrática. Ela nos dá as raízes da equação, que chamaremos de \(r_1\) e \(r_2\):
+
+\[
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\]
+
+Aqui:
+\begin{itemize}
+    \item \(b^2 - 4ac\) é chamado de discriminante (\(\Delta\)), e ele determina o número de soluções:
+    \begin{itemize}
+        \item Se \(\Delta > 0\), temos duas raízes reais e distintas.
+        \item Se \(\Delta = 0\), temos uma única raiz real (duas raízes iguais).
+        \item Se \(\Delta < 0\), não temos raízes reais (apenas complexas).
+    \end{itemize}
+\end{itemize}
+
+\subsection*{2. Encontrando as raízes \(r_1\) e \(r_2\)}
+
+Uma vez que tenhamos as raízes \(r_1\) e \(r_2\), podemos fatorar o polinômio quadrático na forma:
+
+\[
+ax^2 + bx + c = a(x - r_1)(x - r_2)
+\]
+
+Essa forma é a fatoração completa do polinômio.
+\textbf{Conclusão:}
+
+\begin{itemize}
+    \item O método de \textbf{Bhaskara} é muito útil quando a fatoração simples (soma e produto) não é viável.
+
+    \item Depois de encontrar as raízes \(r_1\) e \(r_2\) usando a fórmula quadrática:
+    \[
+    x = \frac{{-b \pm \sqrt{{b^2 - 4ac}}}}{2a}
+    \]
+    você pode escrever o polinômio fatorado na forma:
+    \[
+    a(x - r_1)(x - r_2)
+    \]
+
+    \item Esse método é \textbf{universal} e funciona para qualquer equação quadrática! Qualquer uma do tipo \(ax^2 + bx + c\).
+    
+\end{itemize}
+\vspace{15pt}
+\hrule3
+\section{Equações do Segundo Grau}
+São equações que tem pelo menos uma incógnita elevada ao quadrado
+\subsection{Resolução pelo Método da Soma e Produto}
+É bem simples, veja na equação quanto vale $[a, b, c]$ e calcule os seguintes valores:
+ \[
+    S = -\frac{b}{a} \quad P = \frac{c}{a}
+\]
+Após calcular os valores de S e P, é só pensar: "Quais valores quando somados resultam no valor de S e quando mutiplicados resultam no valor de P?"
+\\
+Exatamente por isso que o valor S é chamado de valor da "Soma" e o valor P de "Produto". \textbf{DICA: Sempre pense primeiro em quais valores quando multiplicados resultam em P, costuma facilitar o raciocíneo}
+
+
+\section{Somatório}
+\[
+\sum_{i=1}^{n} x_i = x_1 + x_2 + \dots + x_n
+\]
+Esse é um somatório de $x$ índice $i$, ou seja, você vai somar todos os índices de o índice $i$, que no caso é 1, até n
+
+\section{Inequações}
+Inequação é uma sentença matemática, com 1 ou mais incógnitas, e que contenha uma desigualdade, diferente das equações, que representam uma igualdades. Elas representam relações que não são de equivalência. \textbf{Ou seja, inequações, diferente das equações, não te fornecem um valor, mas sim, um intervalo de valores}
+
+\subsection{Inequações do 1º grau}
+Você resolve que nem uma equação do 1º grau. Só tem uma diferença, quando você multiplicar ambos os membros da inequação por valores negativos, você deve inverter o sinal da desigualdade
+
+\subsection{Inequações Produto e Inequações Racionais}
+São as inequações que tem polinômios contendo produtos e frações
+
+\subsection{Inequações do 2º grau}
+\begin{itemize}
+    \item EM CASO DE POLINÔMIOS DO 2º GRAU SIMPLES: Para obter o conjunto solução desse tipo de inequação, extraia as raízes e esboce o gráfico. Ao realizar essas duas etapas você fez o que se chama de \textbf{estudo do sinal}
+    \item  A função principal pode ser muito complexa, e envolver polinômios que poderiam ser separados como outras funções polinomiais, exemplo: \[
+\frac{(-x + 3)(x^2 - 3x + 2)}{2x - 1} < 0
+\] em casos assim, você primeiramente coloca esse polinômio em função de alguma variável, x nesse caso, e decompõe em funções menores, criando as funções: \[
+f(x) = -x + 3
+\]
+\[
+g(x) = x^2 - 3x + 2
+\]
+\[
+h(x) = 2x - 1
+\] após separar a função em funções menores, estude o sinal de cada uma dessas funções individualmente, e então, crie uma tabela com os sinais de cada função em cada intervalo, e multiplique todos os sinais para obter o estudo do sinal da função principal, ficaria assim
+\[
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+x & \frac{1}{2} & 1 & 2 & 3 \\ \hline
+f(x) & + & + & + & - \\ \hline
+g(x) & + & + & - & + \\ \hline
+h(x) & - & + & + & + \\ \hline
+\frac{f(x) \cdot g(x)}{h(x)} & - & + & - & - \\ \hline
+\end{array}
+\]
+\end{itemize}
+
+\section{Funções}
+Já sabe o que é, saidera saidera
+
+\subsection{Tipos de Funções}
+\begin{itemize}
+    \item \textbf{Função sobrejetora:}\\[10pt] Uma função é sobrejetora se, e somente se, o seu conjunto imagem for especificadamente igual ao contradomínio, Im = B. Por exemplo, se temos uma função f : Z→Z definida por y = x +1 ela é sobrejetora, pois Im = Z.
+
+    \item \textbf{Função Injetora}\\[10pt] Uma função é injetora se os elementos distintos do domínio tiverem imagens distintas. Por exemplo, dada a função f : A→B, tal que f(x) = 3x.
+
+    \item \textbf{Função bijetora:}\\[10pt] Uma função é bijetora se ela é injetora e sobrejetora. Por exemplo, a função f : A→B, tal que f(x) = 5x + 4.
+\end{itemize}
+
+\section{Função Inversa}
+A função inversa é um tipo de função que joga os elementos do contra-domínio no domínio, assim, invertendo a função original. Pensa assim, uma função ``normal" sempre liga um $x$ a um $y$. O que a função inversa faz é ligar cada $y$ a um $x$.\\[10pt]
+Para que uma função seja inversível, ela deve ser \textbf{bijetora}. Vamos apresentar a definição formal de função inversa\\[10pt]
+Uma função $f$ bijetora tem por inversa a função $f^{-1}$, tal que $(x, y) \in f \Longleftrightarrow (y, x) \in f^{-1}$\\[10pt]
+\textbf{Explicando a definição:} O par $(x, y)$ na função $f$ contém $x$, que representa um elemento qualquer do domínio, e $y$ como a imagem correspondente a $x$ no contra domínio. Dito isso, o que a definição nos diz é: Se você tem esse par $(x, y)$ na função original, a função inversa irá inverter o elemento de entrada (elemento do domínio), que era $x$, com o elemento de saída (elemento do contra-domínio), que era $y$, ficando com um par $(y, x)$. Ou seja, a função $f^{-1}$ inverte os papéis do domínio e contradomínio da função original\\[10pt]
+\textbf{Por que $f$ deve obrigatoriamente ser bijetora para ser inversível?}\\
+Lembrando, função bijetora é aquela que é ao mesmo tempo sobrejetora e injetora. Isso é uma condição obrigatória para uma função ser inversível pois se 2 ou mais elementos do domínio se ligassem a um único elemento do contra-domínio, a função inversa de $f$ \textbf{não seria função!} Lembre-se da definição de função, "um elemento do domínio deve se ligar a \textbf{somente} um único elemento do contra domínio", caso contrário, não existe função\\[10pt]
+Para calcular a função inversa, $f^{-1}$, em uma função $y = f(x)$, troca-se $x$ com $y$ e isola-se $y$\\[10pt]
+Vamos ver alguns \textbf{exercícios} para entender melhor\\[10pt]
+a) $y = 2x - 3$\\[5pt]Vamos trocar todos os $x$ por $y$\\[5pt]
+$x = 2y - 3$\\[5pt]Agora que trocamos, vamos isolar $y$\\[5pt]
+$-2y = -x -3$\\[5pt]$2y = x + 3$\\[5pt]$y = \frac{x + 3}{2}$\\[5pt]Isolamos $y$. Perceba que multiplicamos a equação toda por -1 para simplificar, e depois apenas resolvemos a equação\\[5pt]
+Com isso, temos que a função inversa de $y = 2x - 3$ é $y = \frac{x + 3}{2}$. Na notação de função inversa, $f^{-1}(x) = \frac{x + 3}{2}$\\[20pt]
+b) $f(x) = \frac{x + 4}{2}$\\[5pt] Lembre-se que $f(x)$ e $y$ são a mesma coisa, logo, podemos trocar a notação $f(x)$ por $y$
+
+\section{Logaritmos}
+
+\section{Progressão Aritimética e Geométrica}
+
+\end{document}
