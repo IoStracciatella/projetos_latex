@@ -11,6 +11,8 @@
 \begin{document}
 \maketitle
 
+\tableofcontents
+
 \section{Coisas Muito Simples que Você Deveria Saber}
 \subsection{M.M.C}
 Pô esse aí é importante. Da pra descobrir muitas coisas usando o conceito de MMC, tipo, quando 2 eventos vão acontecer simultaneamente
@@ -170,8 +172,22 @@ Essa forma é a fatoração completa do polinômio.
     \item Esse método é \textbf{universal} e funciona para qualquer equação quadrática! Qualquer uma do tipo \(ax^2 + bx + c\).
     
 \end{itemize}
+
+\subsection{Dispositivo de Briot-Ruffini}
+
 \vspace{15pt}
-\hrule3
+\hrule
+\vspace{15pt}
+\section{Sistemas de Equação}
+É realmente um sistema de equações. Se uma equação tem 1 única expressão e 2 variáveis, fica impossível determinar o valor numérico das 2. É possível determinar certas coisas em função de x ou y, mas determinar seus valores, não
+\\[5pt]
+Para podermos determinar os valores das variáveis, temos que ter 1 equação para cada variável, formando um sistema
+\subsection{Sistemas 2x2}
+Usa o método da substituição ou adição. Mais raramente, usa-se o método da comparação
+
+\subsection{Sistemas 3x3}
+Sim, é possível resolver sistemas 3x3 utilizando o método da substituição
+
 \section{Equações do Segundo Grau}
 São equações que tem pelo menos uma incógnita elevada ao quadrado
 \subsection{Resolução pelo Método da Soma e Produto}
@@ -226,19 +242,179 @@ h(x) & - & + & + & + \\ \hline
 \end{itemize}
 
 \section{Funções}
-Já sabe o que é, saidera saidera
+
+\subsection{Noção Intuitiva de Função}
+De forma simples, uma função é uma regra que relaciona cada elemento de um conjunto (chamado domínio) a exatamente um elemento de outro conjunto (chamado contradomínio). É uma regra que relaciona elementos de 2 conjuntos
+\\[5pt]
+Vamos dizer que o domínio é um conjunto $A$ e o contradomínio um conjunto $B$, nesse caso, escrevemos a função como:
+\[
+f: A \to B
+\]
+Essa notação mostra que $f$ pega elementos de $A$ e transforma em elementos de $B$
+\\[5pt]
+Na notação de função, chamamos o elemento (valor) de entrada de $x$, e o valor de saída (correspondente a $x$) de $f(x)$, ou $y$.
+\\[10pt]
+\subsection{Notações de Função}
+
+\textbf{Mas por que 2 notações para o valor de saída?}
+\\[5pt]
+Porque cada uma é útil em um contexto. A notação $f(x)$ é útil quando queremos explicitar qual foi o valor de entrada $(x)$ da função. Ex: $f(1), f(a), f(288)$. Isso é útil quando queremos enfatizar a relação entre entrada e saída, como em cálculos e manipulações algébricas. Já a notação $y$ é mais resumida sem precisar mencionar explicitamente a entrada $x$. Isso é útil em gráficos e equações onde o foco está mais na saída do que na entrada
+\\[5pt]
+Ainda nesse tópico, funções podem ter muitas notações. Por exemplo:
+\begin{itemize}
+    
+    \item \textbf{Notação de Diagrama de Setas:} A dos círculos com setinhas, usada para representar o domínio, contradomínio e a regra de associação visualmente. Mostra dois conjuntos com setas ligando os elementos do domínio aos do contradomínio.
+    
+    \item \textbf{Notação por Regras:} A mais comum na matemática formal. Escrevemos algo como \( f(x) = 2x + 1 \), indicando como calcular a imagem de cada elemento.
+    
+    \item \textbf{Notação de Definição Formal:} Indica domínio, contradomínio e a regra ao mesmo tempo. Exemplo: 
+    \[
+    f: \mathbb{R} \to \mathbb{R}, \quad f(x) = x^2
+    \]
+    
+    \item \textbf{Notação de Pares Ordenados:} Representa a função como um conjunto de pares \( (x, f(x)) \). Exemplo: 
+    \[
+    f = \{ (1, 2), (2, 4), (3, 6) \}
+    \]
+\end{itemize}
+
+A notação mais comum para função é:
+\[
+f: A \to B
+\]
+Isso indica que a função $f$ leva um elemento $x \in A$ a $f(x) \in B$
+
+\subsection{Definição Formal de Função}
+Definindo de forma mais precisa, uma função é uma terna, $(f, A, B)$, onde $f$ é a lei que define a função, chamada \textbf{Lei de Formação}, $A$ é o domínio (valores de entrada) de $f$ e $B$ o contra-domínio (valores de saída). A lei $f$ associa a cada $x$ um \textbf{único} $f(x)$ (podemos chamar $f(x)$ de $y$ também) pertencente a $B$
+\\[10pt]
+Dito isso, definimos função assim:
+\\[10pt]
+\textbf{Seja \( A \) um conjunto, chamado domínio, e \( B \) outro conjunto, chamado contradomínio. Dizemos que \( f : A \to B \) é uma função se todo elemento de \( A \) está associado a um único elemento de \( B \)}
+
+\subsection{Domínio, Contradomínio e Imagem}
+Quando estamos tratando de funções, damos alguns nomes específicos para os conjuntos que a \textbf{lei de formação} da função relaciona
+\begin{itemize}
+    \item \textbf{Domínio ($\mathrm{D}$)}
+    \\[5pt]
+    \textit{O domínio é conjunto de todos os valores de ``entrada" da função. É o conjunto de valores para os quais a função está definida}
+    \\[5pt]
+    Calma. Explicando melhor, as vezes o domínio é um tal conjunto $C$ porque a função apenas está definida em $C$, logo o domínio é restrito a $C$ por esse motivo. No entanto, em muitos casos, a função está definida em $\mathbb{R}$, porém queremos estudar apenas os valores dela nos números inteiros, por exemplo. Nesse caso, por nossa vontade restringimos o domínio. E podemos restringir o domínio a qualquer conjunto arbitrário que quisermos, essa é a mágica. Se quisermos, podemos falar que o domínio é só um conjunto $H = \{0.0032, 1, 42, 877\}$ olha que conjunto nada a ver, com 4 elementos só, e ainda assim ele pode ser o domínio sem problemas
+    \\[5pt]
+    Se não for especificado o domínio de uma função, assume-se que o domínio é todo o conjunto dos números reais
+    \\[5pt]
+    \textbf{Exemplos:}
+    \[f(x) = \frac{1}{x}\]
+    Essa função não está definida para $x = 0$, logo, seu domínio é $\mathrm{Dom}(f):\mathbb{R} - \{0\}$ (todos os reais sem ser o 1)
+    \[f(x) = 0,5 + x\]
+    \[f:\mathbb{Z}\xrightarrow{}\mathbb{R}\]
+    Agora, nesse exemplo, a função está definida para todo o conjunto $\mathbb{R}$, mas, por livre e espontânea vontade resolvemos restringir o domínio aos inteiros, e tudo certo
+
+    \item \textbf{Contra-Domínio ($\mathrm{CD}$)}
+    \\[5pt]
+    É o conjunto de saída da função. Ele é definido pelo criador da função, junto com domínio. Você que escolhe o contra-domínio
+    \\[5pt]
+    Perceba! O conjunto de saída pode não ser \textit{somente} o conjunto de valores gerados pela função (essa é a imagem). O contra-domínio contém o conjunto imagem, essa é a única coisa que podemos afirmar, olha só
+    \[
+    \text{imagem} \subseteq \text{contradomínio}
+    \]
+    Ou seja, todo valor da imagem está dentro do contradomínio, mas nem todo valor do contradomínio precisa estar na imagem (a menos que a função seja sobrejetora)
+
+    \item \textbf{Imagem ($\mathrm{Im}$)}
+    \\[5pt]
+    É o conjunto de todos os valores gerados pela função. Esse conjunto inclui todos os todos os valores $f(x)$ quando $x$ percorre todo o domínio
+    \\[5pt]
+    \textbf{Então, o contra domínio é a mesma coisa que a imagem? Não. Não é}
+    \\[5pt]
+    O contradomínio é o conjunto de chegada da função. É o conjunto no qual os valores da função estão contidos, ou seja, onde a função "despeja" os resultados, não necessariamente \textbf{somente} os resultados. Isso é, o contra domínio pode ter mais elementos que a imagem gerada pela função \textbf{Importante:} O contradomínio é definido junto com a função, não é descoberto depois. Ele não depende dos valores que realmente saem da função — isso é outra coisa, essa coisa é justamente a imagem. A imagem é o conjunto de valores efetivamente produzidos pela função. Entendeu a diferença? Se a gente tivesse uma função que enfia farinha, e ela faz biscoitos, é como se o domínio fosse a farinha, o contra-domínio fosse a "bandeja" onde a função despeja os biscoitos, e a imagem os biscoitos em si
+    \\[5pt]
+    \textbf{Exemplo:}
+    \[
+    f: \mathbb{R} \to \mathbb{R}, \quad f(x) = x^2
+    \]
+    \begin{itemize}
+        \item \textbf{Domínio:} $\mathbb{R}$
+        \item \textbf{Contradomínio:} $\mathbb{R}$
+        \item \textbf{Imagem:} $[0, \infty[$, porque $x^2$ nunca da um número negativo
+    \end{itemize}
+    \end{itemize}
+
+\subsection{Significado de ``estar em função" na matemática}
+
+Quando dizemos, na matemática, que tal número ou expressão está em função de outra, queremos dizer que há (ou que definimos) uma relação de dependência hierárquica entre elas. Ou seja, se $Y$ está em função de $X$, isso significa que $X$ ``manda'' em $Y$ — o valor de $Y$ depende do valor de $X$.
+\\[5pt]
+Quando usamos expressões como ``resolver em função de tal variável'', estamos dizendo que queremos expressar todas as outras variáveis em termos daquela, \textbf{ela é o que importa}. Por exemplo, ao resolver ``em função de $x$'', significa que $x$ é a variável principal e queremos isolá-la ou entender como as outras dependem dela.
+
+\subsection{Função Linear x Função Afim}
+\begin{itemize}
+    \item \textbf{Função afim}
+    \\[5pt]
+    Toda função da forma $f(x) = ax + b$ é dita afim e seu gráfico é uma reta
+    \item \textbf{Função Linear}
+    \\[5pt]
+    Dada $f(x) = ax$ é dita função linear e seu gráfico é uma reta passando por (0, 0), ou seja, a origem do plano de ordenadas
+\end{itemize}
+
+\subsection{Funções Monótonas}
+Funções monótonas são funções estritamente crescentes ou decrescentes, ou nem crescentes nem decrescentes (constantes). Elas são previsíveis, por isso ``monótonas"
+\\[10pt]
+Uma função $F: I \subset R \xrightarrow{} B \subset R$ é dita estritamente crescente em $I$ se para todo $x, y \in I$ temos que se $x < y$ então $f(x) < f(y)$. Ou seja, quanto maior o valor que você enfia, maior o valor que sai
+\\[10pt]
+Esta propriedade se reflete no gráfico de $F$
+
+\begin{itemize}
+    \item Uma função $F: I \subset R \xrightarrow{} R$ é dita estritamente decrescente em I se para todo $x, y \in I$ tal que $x < y$ temos $f(x) < f(y)$
+    
+    \item Uma função $F: I \subset \mathbb{R} \to B \subset \mathbb{R}$ é dita não crescente (ou decrescente) em $I$ se, para todo $x, y \in I$, temos que se $x < y$, então $F(x) \geq F(y)$.
+\end{itemize}
+
+Analogamente definimos função não crescente como sendo aquelas satisfazendo a seguinte propriedade
+\\[5pt]
+$para todox, y \in I = dom(F)$ temos que se $x < y$ temos que $f(x) maiorigual f(y)$
+
+\subsection{Gráficos e Curvas}
+\textbf{``Será que, dada uma curva no plano xy, sempre existe uma função cujo gráfico é aquela curva?"}
+\\[5pt]
+\textbf{Resposta:} Não. Porque podemos ter curvas que associam um elemento a mais de uma imagem, um x a mais de um y. Formas como um círculo no gráfico fazem isso
 
 \subsection{Tipos de Funções}
 \begin{itemize}
-    \item \textbf{Função sobrejetora:}\\[10pt] Uma função é sobrejetora se, e somente se, o seu conjunto imagem for especificadamente igual ao contradomínio, Im = B. Por exemplo, se temos uma função f : Z→Z definida por y = x +1 ela é sobrejetora, pois Im = Z.
+    \item \textbf{Função sobrejetora:}\\[10pt] Uma função é sobrejetora se, e somente se, o seu conjunto imagem for especificadamente igual ao contradomínio, Im = B. Por exemplo, se temos uma função f : Z→Z definida por y = x +1 ela é sobrejetora, pois Im = Z. Ou seja, não ficou ninguém "de fora" no contra domínio
 
     \item \textbf{Função Injetora}\\[10pt] Uma função é injetora se os elementos distintos do domínio tiverem imagens distintas. Por exemplo, dada a função f : A→B, tal que f(x) = 3x.
+    \\[5pt]
+    Formalizando, dada $f: I \subset R \xrightarrow{} R$ dizemos que $f$ é injetora se para todo $x_1, x_2 \in I$ tal que $f(x_1) = f(x_2)$ então $x_1 = x_2$
 
     \item \textbf{Função bijetora:}\\[10pt] Uma função é bijetora se ela é injetora e sobrejetora. Por exemplo, a função f : A→B, tal que f(x) = 5x + 4.
 \end{itemize}
 
-\section{Função Inversa}
-A função inversa é um tipo de função que joga os elementos do contra-domínio no domínio, assim, invertendo a função original. Pensa assim, uma função ``normal" sempre liga um $x$ a um $y$. O que a função inversa faz é ligar cada $y$ a um $x$.\\[10pt]
+\subsection{Classificação das Funções}
+\begin{itemize}
+    \item \textbf{Função Afim} \\[10pt] Você sabe o que é, você sabe
+    \item \textbf{Função Polinomial} \\[10pt] É a função do tipo $y = ax^n + ax^n-1 + a_n-1$
+    \item \textbf{Função Racional} \\[10pt] É o quociente de 2 funções afim
+    \item \textbf{Função Trigonométrica} \\[10pt] Tem alguma coisa de trigonometria na lei de formação
+    \item \textbf{Função Logaritmo} \\[10pt] Tem log na lei de formação 
+    \item \textbf{Função Exponencial} \\[10pt] É a inversa da logaritmo
+\end{itemize}
+
+\subsection{Função Composta}
+A função composta acontece quando o resultado de uma função serve como entrada para outra.  
+Seja \( f: B \to C \) e \( g: A \to B \), então a composição \( f \circ g \) é uma função de \( A \) em \( C \), definida por:
+\[
+(f \circ g)(x) = f(g(x)) \quad \text{para todo } x \in A
+\]
+\textbf{Exemplo:}  
+Se \( f(x) = x^2 \) e \( g(x) = x + 1 \), então:
+\[
+(f \circ g)(x) = f(g(x)) = f(x + 1) = (x + 1)^2
+\]
+\textbf{Dica para lembrar:}  
+Na composição \( f \circ g \), \textbf{g age primeiro}, \textbf{f depois}
+\\[10pt]
+Para a notação de função composta calculada em um dado valor ou ponto, temos \( (f \circ g) (x)\). Essa notação diz "calcule $f$ composta em $g$ no valor (ou ponto) $x$". Primeiro o valor $x$ passa por $g$, depois por $f$
+
+\subsection{Função Inversa}
+A função inversa é um tipo de função que joga os elementos do contra-domínio no domínio, assim, invertendo a função original. Pensa assim, uma função ``normal" sempre liga um $x$ a um $y$. O que a função inversa faz é ligar cada $y$ a um $x$. Ou seja, a função inversa de $f$, denotada por $f^-1$ ``desfaz" o que $f$ faz\\[10pt]
 Para que uma função seja inversível, ela deve ser \textbf{bijetora}. Vamos apresentar a definição formal de função inversa\\[10pt]
 Uma função $f$ bijetora tem por inversa a função $f^{-1}$, tal que $(x, y) \in f \Longleftrightarrow (y, x) \in f^{-1}$\\[10pt]
 \textbf{Explicando a definição:} O par $(x, y)$ na função $f$ contém $x$, que representa um elemento qualquer do domínio, e $y$ como a imagem correspondente a $x$ no contra domínio. Dito isso, o que a definição nos diz é: Se você tem esse par $(x, y)$ na função original, a função inversa irá inverter o elemento de entrada (elemento do domínio), que era $x$, com o elemento de saída (elemento do contra-domínio), que era $y$, ficando com um par $(y, x)$. Ou seja, a função $f^{-1}$ inverte os papéis do domínio e contradomínio da função original\\[10pt]
@@ -252,8 +428,100 @@ $-2y = -x -3$\\[5pt]$2y = x + 3$\\[5pt]$y = \frac{x + 3}{2}$\\[5pt]Isolamos $y$.
 Com isso, temos que a função inversa de $y = 2x - 3$ é $y = \frac{x + 3}{2}$. Na notação de função inversa, $f^{-1}(x) = \frac{x + 3}{2}$\\[20pt]
 b) $f(x) = \frac{x + 4}{2}$\\[5pt] Lembre-se que $f(x)$ e $y$ são a mesma coisa, logo, podemos trocar a notação $f(x)$ por $y$
 
+\subsection{Funções e o Plano Cartesiano}
+Uma forma de representar um relação de função é através do plano cartesiano, onde um eixo representa os valores de entrada, e o outro os valores de saída
+
+\subsection{Exercícios Úteis}
+Uma certa \( f : \mathbb{R} \to \mathbb{R} \) tem a seguinte propriedade:
+\[
+f(mx) = mf(x) \quad \text{para todos } m, x \in \mathbb{R}.
+\]
+Descreva a expressão analítica de \( f(x) \).
+\\[5pt]
+\textbf{Resposta:} A ideia pra resolver é: A função tem que ser do tipo em que multiplicar o x antes ou multiplicar a saída depois dá o mesmo resultado. Ou seja: Se eu multiplico $x$ por $m$ antes de jogar na função, dá a mesma coisa que jogar $x$ na função e multiplicar o resultado por $m$ depois.
+\\[5pt]
+Então, como resposta dessa equação funcional \( f(x) = kx \) serve, porque se você colocar \( mx \) no lugar de \( x \), ela vira \( f(mx) = k(mx) = m(kx) = mf(x) \). Então a equação fica certa. Por isso, a resposta é \( f(x) = kx \), com \( k \in \mathbb{R} \).
+
 \section{Logaritmos}
 
+\subsection{Alongamentos Úteis}
+
 \section{Progressão Aritimética e Geométrica}
+\hrule
+\vspace{10pt}
+\section{Potências}
+\subsection{Expoentes Negativos}
+Inverte a base. Só.
+
+\subsection{Expoentes Fracionários}
+``O que tava no sol vai pra sombra, e o que tava na sombra vai pro sol"
+
+\subsection{Expoentes Fracionários Negativos}
+Similar ao caso anterior. Inverte a base, mas transforma em, raíz já que é um expoente fracionário. Vale notar que você tem que verificar se a fração é realmente negativa, exemplo $10^-4/-8$ \textbf{não é um expoente fracionário negativo}, afinal, menos com menos da mais. Mas em casos como $3^-2/5$, essa fração é realmente negativa, então invertemos
+\vspace{10pt}
+\hrule
+\vspace{10pt}
+\section{Raízes}
+\subsection{Subtração de Raizes}
+Para subtrair raizes, em quase todos os casos sua intençaõ é fatorar os números e resolver uma parte da raiz, ou seja, no caso de subtração de raizes sua intenção é simplificar a expressão ao máximo, e (geralmente) não exatamente resolver encontrando como resultado um número
+\\[10pt]
+Passos comuns para subtrair raízes:
+\begin{itemize}
+    \item Fatorar os números dentro da raiz para ver se há algo que pode ser simplificado.
+    \item Extrair fatores quadrados (ou cúbicos, dependendo da raiz) para fora da raiz.
+    \item Verificar se há termos semelhantes para realizar a subtração.
+\end{itemize}
+\textbf{Exemplo:}
+\\[10pt]
+$\sqrt{200} - \sqrt{32}$
+\\[5pt] Pra resolver isso, vamos fatorar o 200 e o 32 pra ver se encontramos algum fator comum ou algo do tipo
+\\[5pt]
+$\sqrt{100} \cdot \sqrt{2} - \sqrt{16} \cdot \sqrt{2}$
+\\[5pt]
+Perceba que a fatoração fez aparecer raizes simples de ser resolver. Vamos resolve-las
+\\[5pt]
+$10 \cdot \sqrt{2} - 4 \cdot \sqrt{2}$
+\\[5pt]
+Agora, pra resolver essa subtração, vamos aplicar a mesma lógica que a aplicaríamos pra subtrações de variáveis
+\\[5pt]
+Imagine que ao invés de $\sqrt{2}$ fosse um $x$ ou $y$, por exemplo. Você saberia resolver, $10x - 4x = 6x$. Logo, pense como se $\sqrt{2} = x$, e resolva
+\\[5pt]
+$10 \cdot \sqrt{2} - 4 \cdot \sqrt{2} \xrightarrow{} 6\sqrt{2}$
+
+\section{Conjuntos}
+\subsection{Operações Entre Conjuntos}
+\begin{enumerate}
+    \item \textbf{União $(A \cup B)$}
+    \\[5pt]
+    Gera um novo conjunto com todos os elementos de A e todos os elementos de B
+    \item \textbf{Interseção $(A \cap B)$}
+    \\[5pt]
+    Gera um novo conjunto que contém apenas os elementos que estão nos dois conjuntos ao mesmo tempo
+    \item \textbf{Diferença $(A - B)$}
+    \\[5pt]
+    Gera um novo conjunto que contém os elementos que estão em A, mas não em B
+\end{enumerate}
+\textbf{Dica: O Diagrama de Venn ajuda a compreender essas operações e suas utilidades}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{venn.jpg}
+    \caption{Operação com os conjuntos}
+    \label{fig:enter-label}
+\end{figure}
+
+\section{Coisas Envolvendo Divisão (Razão, Proporção, Porcentagem e mais)}
+Agora: Temos um alimento de 250g com 45g de fibras, e outro de 100g com 20,5g. Qual deles tem mais fibras por grama?
+Resolução: Divida a parte pelo todo pra saber quanto a parte representa do todo, e depois compare-as. A divisão que resultar em um resultado maior será o alimento com mais fibras. Parte dividida pelo todo no caso seria 45 ÷ 250 e 20,5 ÷ 100
+\\[10pt]
+\textbf{Por que essa estratégia funciona?} Porque obtivemos a quantidade de fibras por grama de cada alimento, e depois comparamos os dois pra ver qual tem mais fibras a cada grama, e óbvio, o tem mais fibras a cada grama tem mais fibras no total
+
+\section{Matrizes e Determinantes}
+
+\subsection{Matrizes}
+São tabelas com valores
+\subsection{Determinantes}
+É um valor numérico gerado por uma matriz. Ele revela, de forma bem resumida, propriedades geométricas e algébricas da matriz
+\\[5pt]
+\textbf{Para uma matriz possuir determinante, ela deve necessariamente ser uma matriz quadrada}
 
 \end{document}
