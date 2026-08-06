@@ -1,0 +1,587 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage[a4paper, margin=1.5cm]{geometry}
+
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black},
+    stringstyle=\color{red!70!black},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    tabsize=4
+}
+
+\title{Linguagem C}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Tipos de Dados, Variáveis e Comandos de Atribuição}
+Um computador manipula informações presentes em sua memória. Estas informações estão divididas em dois tipos: 
+
+\begin{itemize}
+    \item Instruções: comandos que determinam o funcionamento do computador e como os dados devem ser tratados.
+
+    \item Dados: informações que devem ser manipuladas pelos computador.
+\end{itemize}
+Podemos dizer que o objetivo de um computador é resolver tarefas. Para isso, ele manipula dados. Por exemplo, uma nota, um nome, um endereço são dados que podem ser manipulados por um computador. Os dados podem ser classificados em tipos. Tipos de dados diferentes são armazenados e manipulados pelo computador de maneiras diferentes. Definir o tipo de um dado é útil para, além de classificar o dado, definir a quantidade de memória necessária para armazená-lo.
+\\[5pt]
+Os tipos de dados podem ser classificados da seguinte forma:
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{tipos_primitivos.png}
+\end{figure}
+Um dado numérico pertencente ao conjunto dos números inteiros é classificado como inteiro.
+\\[5pt]
+Alguns exemplos de dados inteiros são:
+Já li 1000 livros.
+O resultado da conta é -7.
+42.
+\\[5pt]
+Na linguagem C, os dados inteiros podem ser definidos usando short int, int, long int, long long int, unsigned short int, unsigned int, unsigned long int ou unsigned long long int.
+
+\subsection{Int}
+
+\subsection{Float, Double}
+
+\subsection{Char}
+
+\subsection{String}
+
+\subsection{Quando você tem que inicializar variáveis?}
+Quando você for utilizar uma variável que deve iniciar com um valor específico (óbvio), ou quando você vai utilizar uma variável que não pode inicializar um com valor aleatário
+\\[5pt]
+Momentos em que não é necessáirio inicializar uma variável: Quando vamos utilizar um scanf logo em seguida. Porque aí, um valor já será atribuído, nem precisamos nos preocupar 
+
+\subsection{Conversões de tipo}
+Alguns tipos de variáveis podem ser convertidos em outros. Para isso, existem vários processos de conversão.
+
+\subsubsection{Conversão Implícita}
+É uma conversão que ocorre sem que você precise fazer nada.
+\\[3pt]
+\textbf{Exemplo:} int para float
+\begin{lstlisting}
+    int x = 5;
+    float y = x;
+\end{lstlisting}
+aqui x vira floar sozinho, porque obviamente um int sempre pode ser convertido em float.
+
+\subsubsection{Cast (Conversão explícita)}
+Nesse tipo de conversão, você escreve o tipo de dado para qual você quer converter a variável entre parênteses, na frente da variável, e pronto, um tipo será convertido para outro. Se for possível, claro.
+\\[3pt]
+Existem muitos casos em que não será possível converter um tipo de dado para outro. Exemplo: string para int, afinal nem faria sentido isso.
+\\[3pt]
+Agora, um caso possível: float para int. O computador irá forçar o número decimal a se tornar um inteiro. Para isso, ele simplesmente retira todas as casas decimais do número. 
+\\[3pt]
+\textbf{IMPORTANTE:} O cast de float para int NÃO aproxima o float do maior valor inteiro, ele apenas retira as casas decimais. Quem aproxima valores decimais de inteiros são os métodos round(), floor() e ceil() 
+\begin{lstlisting}
+    float x = 5.8;
+    int y = (int)x;
+\end{lstlisting}
+O comando (int) é o cast. Ele irá converter x em um valor inteiro. nesse caso, o valor de y será 5
+
+\section{In e Out (printf e scanf)}
+\subsection{Print em C:} No C, tem um monte de regra chata pra printar as coisas que outras linguagens não tem. 
+\\[5pt]
+Se você quiser pritar uma string, é simples, aí é igual em outras linguagens:
+\begin{lstlisting}[language=C]
+printf("Bom dia!");
+printf("19273746321");
+printf(",   ");
+printf(" \n");
+\end{lstlisting}
+Tudo isso funciona de boa, e inclusive, da pra printar espaços, de boa também printf(     ) vai printa 5 espaços, por exemplo, então é de boa printar qualquer coisa que seja um caractere de texto, até caractere especial tipo ? ! tudo isso é de boa
+\\[5pt]
+Agora vem o "problema", imprimir variáveis. Se você quiser imprimir uma variável, NÃO é igual em outras linguaguens, tipo C\# ou Python, em que você pode declarar uma int ou floar e simplesmente passar ela como argumento pro print. Vou dar um exemplo de coisa que daria ERRADO em C:
+\begin{lstlisting}[language=C]
+int a = 5;
+printf(a);
+
+float b = 4.5;
+printf(b);
+
+char c = 'Y';
+printf(c);
+\end{lstlisting}
+Em C\#, isso funcionaria, em C não. Mesmo que seja um char, não funciona. O primeiro parâmetro de um printf é uma string. Sim, isso mesmo, em C é assim. O primeiro parâmetro TEM QUE SER um valor string. Ou seja, o primerio parâmetro tem que ser um valor entre "" aspas duplas (ou um ponteiro que aponta para um valor desse tipo, mas isso é assunto pra depois). Então como você faz pra pintar uma float ou uma int ou qualquer coisa que não seja diretamente um valor do tipo string? Simples, você coloca, na string de formatação, um especificador correspondente ao tipo do valor, e depois passa esse valor nos próximos parâmetros do printf. Os especificadores de tipo são: 
+\begin{itemize}
+    \item \%d para int
+    \item \%f para float ou double
+    \item \%c para char
+    \item \%s para string
+\end{itemize}
+Pra implementar, é só colocar esses valores na string que o printf tem de parâmetro. Ou seja, coloca o identificador correspondente ao valor que você quer printar entre aspas duplas. Assim:
+\begin{lstlisting}[language=C]
+int valor = 25;
+printf("%d", valor);
+
+float quantidade;
+scanf("%f", &quantidade);
+
+printf("Esse eh o numero %f", quantidade);
+\end{lstlisting}
+
+\subsection{scanf}
+Para receber um input em C, utilizamos a função \verb|scanf()|. Essa função recebe um ou mais parâmetros de especificador de tipo (como \%d, \%f ou \%s), e um ponteiro para indicar em qual(is) variável(is) o(s) valor(s) será(ão) armazenado(s).
+\\[3pt]
+Cada especificador de tipo indica que um valor será inserido pelo usuário. Ou seja, para cada especificador de tipo, será um valor sendo recebido e atribuído a alguma variável pelo scanf. Vamos ver um caso com 1 especificador de tipo:
+\begin{lstlisting}
+    int a;
+    scanf("%d", &a); 
+\end{lstlisting}
+Nesse código, a função scanf irá atribuir o valor inserido pelo usuário na variável "a".
+\\[5pt]
+Agora, um caso que usa mais de um especificador de tipo:
+\begin{lstlisting}
+    int a, b;
+    float c;
+    
+    scanf("%d %d %f", &a, &b, &c);
+\end{lstlisting}
+Nesse código, cada valor recebido será atribuído as variáveis a b e c respectivamente.
+\\[3pt]
+Você talvez esteja se perguntando "mas quando você usa vários \%d, como o computador diferencia onde acaba um número e outro começa?", e a resposta é simples: O espaço delimita um número. Simples assim. 
+
+\section{Expressões Numéricas e Lógicas}
+Uma expressão numérica envolve constantes e o valor de variáveis
+numéricas.
+\\[5pt]
+Dois exemplos de expressão numérica são:
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{expressoess.png}
+\end{figure}
+
+\section{Loops (Laço)}
+São comandos. Eles repetem várias vezes
+\subsection{While}
+O while é o loop mais simples, ele só tem uma condição lógica booleana pra condição de parada
+\\[5pt]
+Dica importante: O break. O while rode rodar eternamente com while(1). Isso é útil, mas muitas vezes ele precisa de uma condição de parada. Então, com o break da pra fazer ele parar
+
+\subsection{Do while}
+O do while é quase igual o while, só que ele executa primeiro o bloco de comando dentro dele, e depois verifica a condição. Ou seja, mesmo que a condição não seja satisfeita, ele roda pelo menos uma vez, porque na primeira iteração (e em todas as outras) ele roda primeiro o código dentro dele e depois verifica a condição. Vamos ver um exemplo:
+\begin{lstlisting}[language=C]
+    int x = 18;
+    
+    while (x < 10) {
+        printf("aurichi");
+    }
+\end{lstlisting}
+esse loop while não vai printar nada. Porque x = 18, que é maior que 10, então simplesmente não vai printar nada. Agora olha o "do while":
+\begin{lstlisting}[language=C]
+    int x = 18;
+
+    do {
+        printf("aurichi");
+    } while (x < 10)
+\end{lstlisting}
+ele vai printar "aurichi" uma vez, porque ele executa o bloco de comando dentro do "do" antes de verificar se $x < 10$. Então, mesmo sendo x = 18, ele vai printar, porque antes de verificar se x = 18 ele já tinha executado o bloco de comando dentro do while
+\section{Arrays e Matrizes}
+
+\subsection{Arrays}
+
+\subsection{Matrizes}
+Uma matriz é uma tabela. Um array com 2 dimensões. 
+\\[3pt]
+Você declara assim: Primeiro o tipo do valor que será armazenado na matriz, depois o nome depois a quantidade de posições em cada dimensão, a primeira dimensão sendo a quantidade de linhas e a segunda a quantidade de colunas.
+\begin{lstlisting}
+    int matriz[8][5];
+\end{lstlisting}
+Nesse caso, temos uma matriz com 8 linhas e 5 colunas. Veja como fica:
+
+\[
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} & a_{14} & a_{15} \\
+a_{21} & a_{22} & a_{23} & a_{24} & a_{25} \\
+a_{31} & a_{32} & a_{33} & a_{34} & a_{35} \\
+a_{41} & a_{42} & a_{43} & a_{44} & a_{45} \\
+a_{51} & a_{52} & a_{53} & a_{54} & a_{55} \\
+a_{61} & a_{62} & a_{63} & a_{64} & a_{65} \\
+a_{71} & a_{72} & a_{73} & a_{74} & a_{75} \\
+a_{81} & a_{82} & a_{83} & a_{84} & a_{85}
+\end{bmatrix}
+\]
+
+CUIDADO: Pode ser confuso às vezes, porque em um array, o primeiro valor de dimensão define apenas quantos elementos ele terá naquela linha. Já na matriz, o primeiro valor define quantas linhas vão ter (isso torna a matriz mais alta) e o segundo valor define quantas colunas a matriz vai ter (isso torna a matriz mais larga)
+
+\subsection{Usos e Dicas de Matrizes}
+
+\subsubsection{Como preencher uma matriz}
+Geralmente, você usa dois loop for aninhados.
+\\[5pt]
+Se você quiser preencher a matriz toda com zeros, você pode fazer assim:
+\begin{lstlisting}
+    int matriz[3][3] = {0};
+\end{lstlisting}
+
+\section{Struct}
+Um struct é um tipo de dado que pode conter outros tipos de dados, você que define quais.
+\\[3pt]
+Formalmente é um tipo de dado composto, também conhecido como registro; um conjunto nomeado de valores que ocupa um bloco de memória.
+\\[3pt]
+Vamos supor que a gente quer criar um registro/tipo de dado que armazena todas as informações de um aluno, idade, série, nome, altura. Fazemos isso usando struct. Você declara um struct assim:
+\begin{lstlisting}
+    struct aluno {
+        int idade, serie;
+        float altura;
+        char[50] nome;
+    };
+\end{lstlisting}
+Entendeu? Pra declarar um struct você escreve a palavra "struct", abre e fecha chaves, e dentro das chaves você coloca os tipos de dados que o struct vai armazenar. \textbf{Cuidado: } Sempre depois de declarar um struct, temos que escrever ponto e vírgula. 
+\\[3pt]
+Agora \texttt{aluno} é um tipo de dado na memória. Então, podemos criar um aluno:
+\begin{lstlisting}
+    struct aluno miguel;
+
+    miguel.idade = 19;
+    miguel.serie = 3;
+    miguel.altura = 1,75;
+\end{lstlisting}
+
+\subsection{Typedef e Typedef Struct}
+Quando usamos o comando typedef antes de um struct, estamos definindo um tipo. Como se o computador deixasse de entender "ah isso aqui é um struct" e só entendesse "esse é um novo tipo de dado".
+\\[3pt]
+Antes de entender o que é um typedef struct, vamos entender o que é o comando typedef.
+\\[3pt]
+Typedef é um comando que define que algo é um tipo. Por exemplo, eu posso criar um \texttt{float nota;}, isso seria simplesmente um float comum. Agora observe:
+\begin{lstlisting}
+    typedef float nota;
+\end{lstlisting}
+Quando fazemos isso, estamos definindo que nota é um tipo, e não uma variável. Então, podemos fazer o seguinte
+\begin{lstlisting}
+    typedef float nota;
+    nota prova1 = 0, prova2 = 0, media = 0;
+\end{lstlisting}
+Definimos variáveis do tipo nota. Elas são do tipo float, mas elas são do tipo nota
+\\[3pt]
+Agora um exemplo com structs
+\begin{lstlisting}
+    struct aluno {
+        int idade, serie;
+        float altura;
+        char[50] nome;
+    };
+\end{lstlisting}
+O que muda na sintaxe de um struct e um typedef struct é que no typedef struct você tem que digitar o nome Agora aluno é interpretado como 
+
+\subsection{Struct Aninhado}
+
+\section{Ponteiros}
+Uma variável guarda um valor, um ponteiro guarda um local da memória onde tem uma variável do tipo daquele ponteiro
+\\[5pt]
+Por exemplo
+\begin{lstlisting}[language=C]
+    int a;
+    int *p;
+\end{lstlisting}
+p é uma variável ponteiro. Ela não foi feita pra guardar um inteiro comum, e sim um endereço de memória de um int. Ou seja, "int a" guarda um número, já p guarda o endereço onde existe um número. Entendeu? 
+\\[3pt]
+Você pode estar pensando ``Ah mas um endereço de memória não é simplesmente um número? Então não da pra guardar ele em um int? Que diferenaç faz guardar ele um uma variável ponteiro se o endereço é só um número?"
+\\[3pt]
+A resposta é que as variáveis ponteiro não são variáveis comuns, o compiladores interpreta elas de forma diferente. Elas são, na verdade, como se fossem objetos feitos para editar coisas nos endereços, não simplesmente armazenar eles. Imagina que o endereço de memória é o endereço de uma casa. O endereço são só palavras, claro, como "Rua Maestro Francisco Todescan". Mas aí que vem a diferença. Me fala, é a mesma coisa escrever o seu endereço em uma folha de papel e guardar em uma gaveta, ou dar seu endereço pra um Uber vir te buscar? Claro que não. Isso quase igual a diferença entre guardar o endereço de memória em uma variável comum VS criar uma variável ponteiro. A variável ponteiro tem poder de fazer coisas que simplesmente guardar o endereço em uma variável comum não tem 
+\\[5pt]
+Outro exemplo:
+\begin{lstlisting}[language=C]
+    int a = 10;
+    int *r;
+
+    r = &a;
+\end{lstlisting}
+Nesse caso:
+\begin{itemize}
+    \item a vale 10
+    \item \&a é o endereço de a
+    \item r guarda esse endereço
+\end{itemize}
+Ou seja:
+\begin{lstlisting}[language=C]
+    printf("%d\n", a);   // 10
+    printf("%p\n", r);   // endereco
+    printf("%d\n", *r);  // 10
+\end{lstlisting}
+Quando você se refere a um ponteiro simplesmente pelo nome dele, no caso r, ele imprime o endereço de memória que ele está guardando, quando você se refere a ele como *r, ele imprime o valor guardado naquele local da memória
+
+\subsection{O Endereço NULL}
+Esse endereço não é nenhuma posição válida na memória, como se fosse um endereço nulo. Ele é usado para não apontar para nenhum lugar específico na memória, o que possibilita algumas verificações para evitar erros.
+\\[3pt]
+Por exemplo, podemos fazer:
+\begin{lstlisting}
+    int *x;
+    *x = 10;
+\end{lstlisting}
+Como o ponteiro x foi criado, mas nenhum valor foi atribuído a ele, ele pode estar apontando para qualquer lugar da memória.
+\\[3pt]
+Ao atribuir o valor 10 a este lugar da memória, podemos estar mexendo em posições da memória que contém outros dados do nosso programa, afinal o ponteiro está apontando para um endereço quase aleatório. Isso pode ter efeitos indesejados no programa.
+
+\subsection{Ponteiros que Apontam para Ponteiros}
+Para fazer um ponteiro apontar para outro ponteiro, você não pode simplesmente criar uma variável do tipo ponteiro e passar um endereço.
+\\[2pt]
+Vou dar um exemplo INCORRETO de como fazer um ponteiro apontar para um ponteiro
+\begin{lstlisting}
+    int a = 7;
+    int *b = &a;
+    int *c = b; // ou int c = &b tambem estaria errado
+\end{lstlisting}
+Supondo que a intenção fosse que int *c apontasse para o endereço de int *b, esse código está INCORRETO.
+\\[2pt]
+Isso acontece porque \texttt{b} é uma variável do tipo \texttt{int *}, ou seja, ponteiro. Portanto, o endereço de \texttt{b} (\texttt{\&b}) possui o tipo \texttt{int **}. Entretanto, a variável \texttt{c} foi declarada como \texttt{int *}, ou seja, ela espera armazenar o endereço de um \texttt{int}, e não o endereço de um ponteiro para \texttt{int}.
+\\[2pt]
+Para que um ponteiro possa apontar para outro ponteiro, é necessário adicionar mais um nível de indireção utilizando outro caractere \texttt{*} na declaração:
+\begin{lstlisting}
+int a = 7;
+int *b = &a;
+int **c = &b;
+\end{lstlisting}
+
+Agora \texttt{c} armazena o endereço de \texttt{b}. Dessa forma:
+
+\begin{itemize}
+    \item \texttt{c} contém o endereço de \texttt{b};
+    \item \texttt{*c} é o próprio ponteiro \texttt{b};
+    \item \texttt{**c} é o valor armazenado em \texttt{a}.
+\end{itemize}
+
+Neste exemplo, o valor de \texttt{**c} é \texttt{7}.
+
+\subsection{Funções Ponteiro}
+
+\section{Funções (Métodos)}
+Uma função é um ``encapsulador de código". Ela encapsula um trecho de código para fazer alguma tarefa.
+\\[3pt]
+Em outras palavras, uma função é um subprograma que realiza uma tarefa específica.
+
+\subsection{Declaração de Função}
+
+\subsection{Parâmetros}
+
+\subsection{Função Aninhada}
+
+\subsection{Função Recursiva}
+
+\subsection{Funções e Ponteiros (Como fazer uma função retornar mais de um valor)}
+Como sabemos, no C uma função retorna apenas um valor. E não tem o que fazer. O comando return só permite que retornemos um único valor.
+\\[3pt]
+Então como fazer para retornar mais de um valor?
+\\[3pt]
+Resposta: Usando ponteiros. O nome dessa técnica é ``Pass by Reference" ou ``Pass by Pointer"
+\\[3pt]
+Imagine que vamos criar uma função que calcula a área e a diagonal de um quadrado, dado um valor de lado. Essa função precisará retornar 2 valores, o valor da área, e o comprimento da diagonal. Então, para fazermos essa função retornar esses 2 valores, precisaremos usar ponteiros, e criar uma função void.
+\\[3pt]
+Mas por que void? A ideia não e retornar os valores? Exatamente! Mas não utilizaremos o comando return para retornar esss valores, utilizaremos ponteiros. 
+
+\section{Alocação Dinâmica de Memória}
+Alocação de dinâmica de memória é utilizada principalmente para criar vetores e matrizes
+
+\section{Tópicos Gerais}
+
+\subsection{Boas Práticas de Programação em C}
+\begin{itemize}
+    \item Sempre indentar um código e manter a mesma indentação até o fim
+
+    \item Declare a variável ``i" fora dos loops for. Exemplo de prática ruim de programação: for (int i = 0; i < 10; i++) {}
+
+    \item Declare todas as variáveis que serão usadas no início do código. E tente agrupa-las. Por exemplo:
+    \begin{lstlisting}
+        #include <stdio.h>
+
+        int main () {
+            int qtde_pessoas = 30, qtde_frutas = 10, tempo = 50, tamanho = 2; // Veja, essas variaveis estejam armazenando quantidades de coisas. Logo, declaramos elas uma do lado da outra pra facilitar na leitura do codigo
+
+            int esta_ligado = 0, esta_aberto = 1; // Estas outras variaveis, apesar de terem o memso tipo int, estao sendo usadas como booleanos, entao, declaramos elas separadamente
+            
+        }
+    \end{lstlisting}
+
+    \item Evite usar os seguintes comandos/recursos:
+    \begin{itemize}
+        \item break
+
+        \item continue
+
+        \item goto
+
+        \item variáveis globais
+    \end{itemize}
+    O motivo pelo qual se deve evitar ao máximo os comandos break, continue e goto é simples: Eles alteram o runtime padrão do C. E isso não é bom. Pode dar pau se você ficar usando sem para
+\end{itemize}
+
+\subsection{int argv e char *argc[]}
+*argc[] é um array de strings que armazena os argumentos passados pro programa na hora da execução
+\\[2pt]
+argv é uma variável do tipo inteiro que, se declarada nos parâmetros do int main, armazena a quantidade de argumentos que foram passados para o programa no momento da execução. Ou seja, armazena a quantidade de elementos presentes em *argc[]
+
+\subsection{Números aleatórios em C}
+Pra gerar números aleatórios você usa a função rand() da bibilioteca stdlib.h
+\\[3pt]
+A função rand() sozinha retorna um número aleatório entre 0 e 2 bilhões. O número aleatório é gerado com base em uma \textbf{semente}. Se a semente for a mesma, o número aleatório será o mesmo.
+
+\subsubsection{Semenado Números Aleatórios}
+Para semear um número aleatório, utilizamos a função srand(). Essa função recebe um número inteiro usado como a semente. 
+\\[3pt]
+Geralmente essa função srand() só é chamada 1 vez no início do código. 
+\\[3pt]
+Porém, utilizar a função srand() com um número fixo toda vez tem um problema. O número aleatório é sempre igual pra uma mesma semente. Ou seja, se você usar o número 42 por exemplo, o número aleatório baseado nessa sementre sempre vai ser um tal valor, sempre. E isso não é o que a gente quer, a gente quer que toda vez que você inicie o programa ele gere um valor aleatório diferente. 
+\\[3pt]
+\textbf{Importante:} Números aleatório em C usando a função rand() e srand() são pseudo aleatórios, porque existem métodos para descobrir qual número aleatório será gerado baseado em cada semente
+
+\subsubsection{Gerando Números Aleatórios Diferentes pra Cada Vez}
+Pra fazer isso, usamos o tempo atual como semente. Afinal, se usarmos o tempo atual, sempre vai ser um númeo diferente e imprevisível.
+\\[3pt]
+Pra isso, usamos a biblioteca time.h, usando a função time() com o valor NULL
+
+\subsubsection{Como Gerar Números Aleatórios Entre um Intervalo}
+Pra isso, usamos o resto da divisão, soma e subtração 
+
+\section{Coisas do C que é bom lembrar}
+\subsection{Cuidado para não fazer operações com variáveis e não atribuir o valor resultante a nada} Como assim você se pergunta? Olha esse exemplo
+\begin{lstlisting}[language=C]
+int a = 0;
+int b = 5;
+
+(a + b)/2;
+\end{lstlisting}
+\textbf{Cuidado na hora de fazer operações:} Supondo que você quisesse mudaar o valor de "a", isso aqui não funciona. Porque você fez a operação (a + b)/2 e jogou fora o valor, não atribuiu ele a nada, você nAo guardou o resultado dessa operação. Em python isso até daria certo, mas em C não. O certo seria:
+\begin{lstlisting}[language=C]
+int a = 0;
+int b = 5;
+
+a = (a + b)/2;
+\end{lstlisting}
+
+\subsection{Arrays e tamanhos de array:} Em outras linguagens, é fácil mudar o tamanho de um arrays ou estruturas análogas a arrays. Em python, por exemplo, você pode declarar uma lista que inicialmente tem apenas 2 elementos, isso é, uma lista com apenas 2 posições. E depois, conforme você quiser adicionar ou remover elementos, a lista muda de tamanho.
+\\[5pt]
+Entretanto... Na linguagem C não é tão simples. Se você declarar um array com 5 posições, por exemplo, você não pode mais mudar a quantidade de índices do array. Vamos ver um exemplo:
+\begin{lstlisting}[language=C]
+    int numeros[5];
+\end{lstlisting}
+Feito isso, esse array numeros não poderá mais ter seu comprimento alterado
+\\[5pt]
+Dito isso, surge uma dúvida: Se por exemplo, você quer fazer um programa que calcula a média de altura em cm de uma quantidade $n$ de pessoas, sendo que você vai ter que armazenar essa quantidade em um array. Como você faz isso? O problema surge porque inicialmente, você não sabe a altura de quantas pessoas o usuário vai inserir, ele pode inserir apenas 2 alturas, 180 e 160, nesse caso o array só precisaria ter duas posições, então int alturas[1] já bastaria. Porém, o usuário pode inserir a altura de 20 pessoas. Aí complica. Não sabemos a altura de quantas pessoas o usuário vai inserir
+\\[5pt]
+E como resolvemos isso na linguagem C? É bem simples na verdade, criamos um array com o máximo de elementos que sabemos que podem ser inseridos. No caso, vamos supor que no total fosse um grupo de 100 pessoas que estávamos analisando a altura. O usuário pode digitar entre 1 e 500 aturas, logo, o array tem que ter 100 posições. Simples.
+\\[5pt]
+Tendo o array com a quantidade de posições sendo a maior quantidade de elementos possíveis a serem inseridos, podemos, antes do usuário inserir as aluras, pedir pro usuário digitar quantas alturas eles vai inserir
+\\
+Isso é o mais comum a se fazer na linguagem C. Simplesmente crie um array com o máximo de posições que podem ser ocupados pelos elementos, e depois peça pro usuário especificar quantos elementos ele vai inserir antes começar a inserir os elementos.
+\\
+Então, no nosso exemplo, antes do usuário inserir as alturas, ele iria inserir um valor entre 1 e 100 pra especificar quantas alturas ele vai inserir
+\begin{lstlisting}[language=C]
+int alturas[100], qtde_pessoas;
+
+printf("Digite a quantidade de pessoas das quais voce vai inserir a altura: ");
+scanf("%d", &qtde_pessoas);
+
+for (int i = 0; i < qtde_pessoas; i++) {
+    scanf("%d", &alturas[i]);
+}
+\end{lstlisting}
+Nesse programa, antes do usuário inserir as alturas ele insere um valor $0<n\leq100$ atribuído a variáve qtde pessoas. Em seguida, um loop for varre preenchendo com scanf as posições entre 0 e a quantidade n de pessoas que o usuário digitou. Assim, o array é preenchido somente até a quantidade de pessoas desejada
+
+\subsection{O Poder do Resto da Divisão}
+Eu não tenho nem como expressar o QUÃO importante é a operação de resto da divisão \%
+\\[3pt]
+Pra fazer muitas, MUUUUUUUUITAS coisas no C, você DEPENDE TOTALMENTE do resto da divisão. Alguns exemplos de coisas importantíssimas que dependem do resto da divião são:
+\begin{enumerate}
+    \item \textbf{Ver se um Número é Par ou Ímpar:} Esse é o exemplo mais clássico de todos. Se um número for par, o resto da divisão por 2 vai ser zero, se ele for ímpar, o resto da divisão por 2 vai ser diferente de zero. A seguir um código simples para verificar se um número é par ou ímpar
+    \begin{lstlisting}[language=C]
+    int a;
+    scanf("%d", a);
+
+    if (a % 2 == 0) {
+        printf("eh par);
+    } else {
+        printf("eh impar); 
+    }
+    \end{lstlisting}
+    E mais legal disso: O conceito de paridade por sua vez tem mais um milhão de utilidades. Saber se um número é par é muito útil.
+
+    \item \textbf{Strip em Números ou Strings:} Quando falamos ``strip", quer dizer quebrar um número em uma sequência de algarismos. Por exemplo: O número 5294 strippado é $\{5, 2, 9, 4\}$. Mesma coisa para strings, uma palavra strippada é o conjunto de letras que aquela palavra contém. Ex: ``marina" strippado é $\{m, a, r, i, n, a\}$
+    \\[3pt]
+    \textbf{Tá, mas o que caralhos isso tem a ver com o resto da divisão?}
+    \\[3pt]
+    Tem a ver que, para podermos fazer um código que faz strip no C, usamos o resto da divisão, e a divisão, por mais estranho que pareça.
+    \\[3pt]
+    Vou explicar a parte matemática primeiro: Cada vez que dividimos um número por 10, o resto dessa divisão é o último algarismo daquele número. A partir disso, conseguimos ``extrair" o último algarismo de um número, e podemos adicionar em um array. Beleza. Mas queremos extrair todos os algarismos de um número. Se tivesse um jeito de excluir o último algarismo de um número, ficaria fácil, extrairíamos o último algarismo do número usando o resto da divisão, colocaríamos ele em um array e em seguida excluiríamos o mesmo, e assim sucetivamente até que não sobrem algarismos no número.
+    \\[3pt]
+    \textit{Mas como remover o último algarismo de um número?} 
+    \\[3pt]
+    Pra isso, a gente usa outro conceito matemático: Dividir um número por 10 move a vírgula uma casa pra esquerda, ou seja, ``tira um zero" do número. Mas, como estamos trabalhando com inteiros, não temos vírgula, então, quando dividimos um número por 10, excluímos o último caractere daquele número. Pronto. Conseguimos o que queríamos, uma forma de excluir o último algarismo do número.
+    \\[3pt]
+    Agora, só precisamos de um loop que roda até que o número seja zero, e para cada iteração ele extrai o último algarismo daquele número e remove o mesmo.
+    \\[3pt]
+    Vamos ver um exemplo para finalizar essa parte matemática: Pensa no número 14. Qual o resto da divisão de 14 por 10? Pensando somente em número inteiros, quantas vezes 10 cabe dentro de 14? Só uma vez. E quanto sobra? O número 4. Viu só? O resto da divisão de 14 por 10 foi exatamente o último algarismo de 14, o número 4. Agora pensa no número 144. O número 10 cabe 14 vezes, e sobra de fora quem? De novo, o 4. Exatamente o que tinha sido dito: O resto da divisão por 10 é SEMPRE o último algarismo de um número. Agora, quanto é 144 dividido por 10? SEM USAR VÍRGULA AFINAL É UM INT. Resposta: É 14. Viu só? Excluímos o último algarismo. 
+    \\[3pt]
+    A\textbf{Agora finalmente vamos fazer o código:} Vamos supor que queremos strippar uma int. Temos um valor int num = 589287. Para strippa-lo, criamos um array que vai receber cada algarismo do número, e um loop while. Esse loop vai ser executado até que o $num$ seja zero, ou seja, até que o número inserido não tenha mais algarismos. Para cada iteração desse loop, ele vai realizar a operação de resto de divisão de $num$ por 10, e em seguida dividir $num$ por 10. Dessa forma, extraímos o último algarismo e em seguida excluímos ele. Como o loop vai rodar até que $num$ seja zero, garantimos que extrairemos todos os algarismos. Também, vamos criar uma int cont que começa em zero, e aumenta 1 no valor a cada iteração do loop, para podermos inserir o último algarismo nas posições do array.
+    \begin{lstlisting}[language=C]
+    int a = 589287;
+    int cont = 0;
+    int algarismos[6];
+
+    while (a != 0) {
+        algarismos[cont] = a % 10;
+        a = a/10;
+        cont++;
+    }
+    \end{lstlisting}
+    \textbf{Só tem um detalhe MUITO importante:} Os algarismos são armazenados no array de forma invertida. Ou seja, o primeiro algarismo do array corresponde ao último algarismo do número. Então, ou você lida com esse fato implementando uma lógica no seu código adaptada a ordem inversa dos algarismos no array, ou você inverte o array.
+    
+\end{enumerate}
+
+\subsection{Descobrir Posição de Elementos em um Array}
+Isso é uma coisa fácil de fazer em outras linguagens. Maaaas, não no C. Pra fazer isso no C, a ideia é fazer um loop (normalmente for) que varre o array a procura do elemento que você quer saber a posição, e, conforme ele varre o array, um valor $i$ vai aumentando. Quando ele encontra o elemento, ele para de varrer o array e printa o valor $i$, que é a posição do elemento.
+\\[3pt]
+Veja um código simples que faz seguinte: Cria um array com 10 posições, e preenche o array com valores inputados pelo usuário. Vamos supor que o usuário vai colocar um único valor 8 em alguma posição do array que ele escolher. Vamos fazer um código que identifica em que posição o valor 8 está.
+\begin{lstlisting}[language=C]
+int numeros[10];
+
+for (int i = 0; i < 10; i++) {
+    scanf("%d", &numeros[i]);
+}
+
+for (int i = 0; i < 10; i++) {
+    if (numeros[i] == 8) {
+        printf("o numero 8 esta na posicao %d", i);
+        break;
+        return 0;
+    }
+}
+
+printf("nao foi inserido nenhum valor 8"); //Se o codigo chegar ate esse trecho, eh porque ele nao conseguiu achar nenhum valor 8, se nao ele teria parado a execucao antes no return 0
+\end{lstlisting}
+Perceba que ao invés de procurar o número 8, poderíamos fazer esse código procurar algum valor $a$ qualquer inserido pelo usuário
+\begin{lstlisting}[language=C]
+int numeros[10], alvo;
+
+scanf("%d", &alvo);
+
+for (int i = 0; i < 10; i++) {
+    scanf("%d", &numeros[i]);
+}
+
+for (int i = 0; i < 10; i++) {
+    if (numeros[i] == alvo) {
+        printf("o numero %d esta na posicao %d", alvo, i);
+        break;
+        return 0;
+    }
+}
+
+printf("nao foi encontrado nenhum valor %d no array", alvo);
+\end{lstlisting}
+\end{document}
