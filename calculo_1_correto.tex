@@ -1,0 +1,743 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[a4paper, margin=1.5cm]{geometry}
+\usepackage[colorlinks=true, linkcolor=black]{hyperref}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{cancel}
+
+\title{Cálculo}
+\author{Minhas Anotações}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Conceito Importantes para o Cálculo}
+\subsection{Vizinhança}
+Vizinhança é um intervalo que se expande a partir de um ponto central, abrangendo valores próximos a esse ponto pelos dois lados.
+\\[2pt]
+De forma um pouco mais formal, uma vizinhança de um ponto (a) é um intervalo aberto que contém (a), abrangendo valores próximos a (a) tanto à esquerda quanto à direita.
+\\[2pt]
+O uso de vizinhanças ocorre principalmente quando precisamos delimitar uma região
+\\[2pt]
+Veja um exemplo visual de vizinhança
+\begin{tikzpicture}
+    \draw[->] (-3,0) -- (3,0);
+    \draw[<->, thick] (-1.5,0.3) -- (1.5,0.3);
+
+    % Marcas dos pontos
+    \draw (-1.5,-0.1) -- (-1.5,0.1);
+    \draw (0,-0.1) -- (0,0.1);
+    \draw (1.5,-0.1) -- (1.5,0.1);
+
+    \node[below] at (-1.5,0) {$a-\delta$};
+    \node[below] at (0,0) {$a$};
+    \node[below] at (1.5,0) {$a+\delta$};
+\end{tikzpicture}
+
+\subsection{Cotas}
+Cotas são valores maiores ou menores que o maior ou menor valor de um conjunto, podendo ser o maior ou menor valor do mesmo (ou seja, inclui os extremos)
+\\[2pt]
+Existem 2 tipos de cotas: Cota superior e cota inferior
+\\[2pt]
+Uma cota inferior é qualquer valor menor ou igual que o menor valor de um conjunto. Uma cota superior é qualquer valor maior uo igual que o maior valor de um conjunto.
+\textbf{Exemplo:}
+\[
+G = \{8, 9, 12, 20, 90\}
+\]
+Uma cota inferior desse conjunto é qualquer valor menor que 8, podendo ser o próprio 8. ou seja, 8, 7, 2, -1000, -29, qualquer um desses valores é cota inferior desse conjunto. Nesse caso, temos infinitas cotas inferiores desse conjunto
+\\[2pt]
+Uma cota superior a esse conjunto é qualquer valor maior ou igual a noventa
+
+\subsubsection{Definição Formal}
+\textbf{Cota inferior:}
+Um número $a \in \mathbb{R}$ é uma cota inferior de um conjunto $A \subseteq \mathbb{R}$ se
+\[
+a \leq x,\quad \forall x \in A.
+\]
+
+\textbf{Cota superior:}
+Um número $a \in \mathbb{R}$ é uma cota superior de um conjunto $A \subseteq \mathbb{R}$ se
+\[
+x \leq a,\quad \forall x \in A.
+\]
+
+\subsection{Supremo e Ínfimo}
+O supremo é a menor cota superior de um conjunto
+\\[2pt]
+O ínfimo é a maior cota inferior de um conjunto
+\\[2pt]
+No caso do exemplo anterior, o supremo seria 90 e o ínfimo 8
+
+\section{Pré-Cálculo}
+
+\section{Funções}
+Uma função tem uma variável dependente e outra independente
+\\[2pt]
+A independente (x) é a que você varia 
+\\[2pt]
+No momento em que uma pessoa cria uma função, ela há de decidir quem está em função de quem, isto é, quem é a variável independente (x) e quem é a variável independente (y)
+
+\subsection{Significado de ``Em função de" ou ``Está em função"}
+estar em função quer dizer literalmente, um valor varia, e o outro depende dele, ou seja, "tal coisa é o x, tal coisa é o y"
+\\[2pt]
+x é um elemento qualquer no domínio, e y é um elemento qualquer no contra domínio
+
+\subsection{Funções em um Contexto mais abstrato}
+Sempre que aprendemos sobre funções aprendemos em um contexto aplicado, como quantidade de laranjas vs preço, ou tempo vs distância, coisas assim
+\\[2pt]
+Mas em um contexto abstrato, como cálculo, muitas vezes temos funções que representam simplesmente uma relação abstrata
+\\[2pt]
+Muitas vezes, só conseguimos expressar objetos na matemática se criarmos uma relação entre 2 conjuntos, e e fazemos isso, por definição temos uma função
+\\[5pt]
+Ou ainda, funções que praticamente só existem por conta dos estudos relacionados ao seu gráfico
+\\[5pt]
+A moral da história é: Funções não precisam expressar uma relação entre grandezas. O objeto função é autossuficiente. Estudar este objeto que relaciona conjuntos é, por si só, um uso legítimo e importantíssimo pra matemática
+
+\subsection{Como Entender e Manipular Funções}
+Quando se tem uma função, você, via de regra, deve pensar que $x$ é o único valor que varia. Ou seja, o $y$ você não controla, você controla apenas o $x$ e, depois, observa quais valores de $y$ foram gerados para tais valores de $x$
+\\[2pt]
+É assim que se ``navega" por uma função, variando o valor de $x$, e vendo os valores de $y$ resultantes
+\\[5pt]
+Ou seja, quando você pensa em uma função na sua cabeça, você deve pensar em duas grandezas que variam e estão associadas. Mas, você apenas pode alterar os valores de $x$, o $y$ vem como consequência da sua escolha de $x$
+
+\section{Limites}
+A base para todos os conteúdos de cálculo é o conceito de limite
+
+\subsection{Noção Intuitiva de Limite e Limites de Sequências}
+Vou falar primeiro a definição que eu acho que tem a melhor razão objetividade/intuição:
+\\[2pt]
+Estudar limites é sobre saber o fim, apenas vendo o caminho. Sabendo o caminho, você sabe o fim, mesmo sem nunca chegar no fim.
+\\[2pt]
+É uma ideia parecida com ver um carro indo em direção a um ponto. Você não precisa ver o carro ir até certo ponto pra saber que ele está indo até ele. Por exemplo, se você vê um carro indo a 100km/h em direção a uma linha de chegada. Você não precisa ver o carro cruzando a linha de chegada pra saber que ele vai cruzar ela em algum momento. Ou seja, você consegue saber o que vai acontecer mesmo sem ver acontecendo. É sobre saber para onde está indo. E assim, tendo essa noção do caminho, você pode saber o fim. Mesmo sem ver o fim, você sabe como ele é. 
+\\[2pt]
+É uma ideia parecida com limites. Você nunca vê a função chegar no limite, mas você sabe que ela com certeza vai chegar naquele limite/valor.
+\\[2pt]
+Exemplo: Observe a sequência
+\[
+1,3,4,5,6,7,8...
+\]
+Para onde a sequência está caminhando? Vamos analisar o que sabemos: 
+\begin{itemize}
+    \item Sabemos que é uma sequência infinita. Afinal, as reticências (...) indicam que a sequência continua infinitamente.
+
+    \item Sabemos também que ela está crescendo. E que ela vai continuar crescendo para sempre.
+\end{itemize}
+Com isso, sabemos que ela está crescendo infinitamente. Ou seja, ela está caminhando para o infinito. Não só sabemos que ela está caminhando para o infinito, sabemos que ela está caminhando para o infinito positivo, afinal, ela está crescendo. Se a gente chamar os elementos dessa sequência de $x$, a gente pode dizer que $x$ está caminhando para o infinito. Só que quando estamos lidando com limites, não falamos ``caminhando", falamos ``tendendo". Então dizemos que $x$ está tendendo ao infinito. A notação para indicar que $x$ está tendendo ao infinito é $x \to +\infty$
+\\[2pt]
+E como nós concluímos conseguimos concluir isso? A gente viu o fim dessa sequência? Óbvio que não, afinal ela é infinita, não da pra ver o fim. Então como a gente concluiu que ela caminha para o infinito mesmo sem ver o infinito? Olhando e analisando como ela está caminhando. E É EXATAMENTE ISSO QUE É ESTUDAR LIMITES. Entender para onde, para qual ponto, uma função/sequência caminha mesmo sem ver esse ponto. É sobre isso. Sobre entender o ponto de chegada, mesmo sem ver ele, e mesmo que ele nem chega um ponto de chegada em si, podemos estudar qual é esse ponto/lugar onde a função caminha (como nesse caso, em que o ``ponto" de chegada é o infinito)
+\\[2pt]
+SÓ QUE AI que vem um conceito interessante de limites: Agora que você já entendeu a noção de limites, vem uma informação muito importante. No caso de limites, sabemos que eles não estão simplesmente caminhando até um certo ponto, eles estão caminhando infinitamente próximos desse ponto. Ou seja, eles estão infinitamente próximos do ponto de chegada. É isso que faz os limites serem interessantes, o fato de eles estarem infinitamente próximos do ponto de chegada. Ou seja, meio que eles chegaram no tal ponto, tendo em vista que eles estão infinitamente próximos do ponto. Mas ao mesmo tempo, eles não são o ponto em si, eles são um valor infinitamente próximo dele. Isso nos permite estudar as propriedades do caminho até aquele ponto. 
+
+Vou falar várias formas intuitivas de pensar nos limites:
+\begin{itemize}
+    \item Limite é sobre entender para onde uma função está indo, mas apenas olhando para o seu caminho, e vice-versa. É sobre saber para onde uma sequência/função caminha, mas apenas olhando a forma que ela caminha.
+
+    \item Estudar limites é meio que sobre responder a seguinte pergunta: ``Se um valor caminha para tal direção, em qual ponto ele vai chegar? Para qual ponto ele está caminhando?". Ao responder essa pergunta, descobrimos que, o ponto para qual o valor está caminhando é o limite.
+    \\[2pt]
+    Ou ainda, no caso de funções, a pergunta seria: ``Se um tal valor x caminha para um ponto,  para onde o valor da função (valor de y) vai caminhar?"
+
+    \item O limite é sobre descrever o comportamento (ou ``caminho") de uma função/sequência a medida que o seu argumento se aproxima de um determinado valor. E vice-versa, isso é, descrever/descobrir o ponto para onde ela se aproxima dado o seu comportamento/caminho.
+
+    \item Como a gente quer saber para onde a função caminha vendo o seu comportamento/caminho (ou vice-versa, descrever o comportamento sabendo para onde, qual ponto, ela caminha) uma decorrência natural desse fato é que: 
+    \\[2pt]
+    Quando estamos estudando limites, não estamos interessados em saber qual o valor da função no limite. Não estamos interessados em saber qual o valor da função no ponto L para onde a função caminha. Não estamos interessados em saber qual o valor da função no ponto exato para onde ela caminha, só estamos interessados em saber como é o caminho até esse ponto.
+    \\[2pt]
+    Não estamos interessado em saber como a função se comporta no valor L do limite, muito menos o valor da função (de y) no ponto/valor L do limite
+    \\[2pt]
+    Claro, para isso a gente tem que saber qual é esse ponto L do limite. Nesse sentido a gente se importa com o ponto. O que a gente não se importa é o valor da função nesse ponto L. A gente sempre tem que saber qual é esse ponto L, mas o que importa quando estamos estudando limites é compreender o caminho/comportamento da função até ele, e não o valor de f(L)
+
+    \item O estudo de limites de funções em geral se resume a: 
+    \\[2pt]
+    Caso 1: Entender para qual ponto a função (o valor de y) caminha, a medida que o valor de x até um dado ponto. Ou seja, encontrar o valor L do limite para onde y (a função) caminha a medida que x caminha para tal valor $a$
+    \\[2pt]
+    Caso 2: Dado um limite L, entender o comportamento da função conforme ela caminha até esse ponto.
+\end{itemize}
+O valor do limite é sempre chamado de L
+\\[2pt]
+O limite em si é apenas um valor L para onde a função caminha. Simplesmente um ponto para onde a função caminha.
+\\[2pt]
+Outro exemplo de sequência:
+\[
+\frac{1}{2}, \frac{2}{3}, \frac{3}{4}, \frac{4}{5}, \frac{5}{6}...
+\]
+O que está acontecendo com essa sequência? Para onde ou qual ponto ela está caminhando? Ora, vamos analisar. O primeiro elemento ${\frac{1}{2}}$ resulta em 0,5 (meio) quando fazemos a divisão. A segunda fração da sequência, ${\frac{2}{3}}$, resulta em 0,66. A terceira, ${\frac{3}{4}}$ resulta em 0,75. Depois temos ${\frac{4}{5}}$ = ${0,8}$, e por aí vai.
+\\[2pt]
+Percebemos que essa sequência está crescendo. Mas será que ela, assim como a anterior, irá crescer infinitamente? Vamos pensar em um elemento bem lá pra pra frente da sequência, por exemplo:
+\[
+\frac{10.000}{10.001}=0,9999 \quad \text{ou} \quad \frac{1 milhão}{1milhão+1} = 0,999999
+\]
+Esses elementos estão mais próximos de 1 do que os anteriores. Quanto mais avançamos nessa sequência, mais próximo de 1 chegamos. A sequência cresce a medida que ela avança, como podemos observar, mas ela cresce caminhando para o valor 1, não cresce infinitamente, ela nunca vai passar do valor 1. Se avançarmos infinitamente nessa sequência, ficaremos infinitamente próximos de 1. Se chamarmos os elementos dessa sequência de $x$ podemos dizer que $x \to 1$ (lê-se ``$x$ tende a 1")
+\\[2pt]
+Com isso concluímos que seu limite é 1, logo , sabemos que essa sequência caminha para o valor 1. Concluímos isso apenas analisando a forma que a função caminha, analisando elemento por elemento a medida que eles avançam. Mesmo sem nunca ver o fim dessa sequência, isso é, mesmo nunca vendo essa sequência chegar em 1, sabemos que ela caminha para o 1.
+\\[5pt]
+Agora observe essa sequência:
+\[
+1, \frac{1}{2}, 2, \frac{2}{3}, 3, \frac{3}{4}
+\]
+Para onde ela caminha? Nesse caso, é complicado. Os elementos pares caminham para 1, os ímpares caminham para $+\infty$. Uma parte da sequência caminha par um valor, e outra parte da sequência caminha para outro valor. Ou seja, a sequência caminha para 2 valores.
+\\[2pt]
+Em um caso em que a sequência caminha para 2 valores, dizemos que a sequência não tem limite. Afinal, não tem como determinar um único ponto para onde ela caminha, porque ela caminha para mais de um ponto.
+\\[2pt]
+Agora que você entendeu intuitivamente a noção de limites com sequências, vamos aplicar o conceito de limite em funções.
+
+\subsection{Noção Intuitiva de Limite de Funções}
+Agora, vamos entender intuitivamente um conceito mais específico: O limite de funções.
+\\[2pt]
+Observe a função:
+\[
+f(x) = \frac{1}{x}
+\]
+Onde $y = f(x)$ (ou seja, podemos reescrever a função como y = 1/x)
+\\[2pt]
+Vamos fazer o valor de $x$ tender ao infinito. Ou seja, vamos fazer o valor de $x$ crescer infinitamente, caminhar até $+\infty$, e para cada valor de $x$, vamos analisar o valor da função (ou seja, o valor de $y$)
+\[
+\begin{array}{rcl|rclcl}
+x &=& 1   & y &=& 1/1   &=& 1 \\
+x &=& 2   & y &=& 1/2   &=& 0{,}5 \\
+x &=& 10  & y &=& 1/10  &=& 0{,}1 \\
+x &=& 100 & y &=& 1/100 &=& 0{,}01 \\
+\multicolumn{3}{c|}{\downarrow} & & & & & \\
+x &\to& +\infty & & & & &
+\end{array}
+\]
+Percebe que conforme $x$ aumenta, conforme $x$ tende a $+\infty$, o valor da função (o valor de y) diminui? Conforme o valor de $x$ caminha para $+\infty$, não só valor da função diminui, ele caminha para zero. Conforme $x$ caminha para o infinito, a função caminha para zero. Ou seja, quando fazemos $x$ tender ao infinito positivo, y tende para zero. Escrevendo isso em notação matemática:
+\[
+x \to \infty \Rightarrow y \to 0
+\]
+x tender ao infinito positivo implica que y vai tender a zero.
+\\[2pt]
+Vamos reescrever isso de uma forma mais clara: O limite dessa função (ou seja, do valor de y) conforme x tende ao $+\infty$ é igual a 0. Isso equivale a dizer que quando x caminha para $+\infty$, o valor de y (a função) caminha para zero.
+\\[2pt]
+Agora que reescrevemos desse jeito, podemos reescrever usando a notação de limite:
+\[
+\lim_{x \to +\infty} \frac{1}{x} = 0
+\]
+O que está escrito nessa notação equivale a dizer ``O limite dessa função (do valor de y) quando x tende a $+\infty$ é zero".
+\\[2pt]
+Ou ainda "Conforme x caminha para $+\infty$, a função (o valor de y) caminha pra 0"
+\\[2pt]
+IMPORTANTE: Quando a gente fala ``a função", a gente tá se referindo ao y, ou seja ao valor de f(x). Simples assim. Falar ``a função" ou ``o valor de y" na maioria dos casos quer dizer a mesma coisa, afinal ``a função" é o valor de y. A ``saída" da função nada mais é que vários valores de y.
+\\[2pt]
+Agora, vamos ver para onde a função caminha quando $x \to -\infty$ (x caminha para o infinito negativo)
+\[
+\begin{array}{rcl|rclcl}
+x &=& -1   & y &=& 1/-1   &=& -1 \\
+x &=& -2   & y &=& 1/-2   &=& -0{,}5 \\
+x &=& -10  & y &=& 1/-10  &=& -0{,}1 \\
+x &=& -100 & y &=& 1/-100 &=& -0{,}01 \\
+\multicolumn{3}{c|}{\downarrow} & & & & & \\
+x &\to& -\infty & & & & &
+\end{array}
+\]
+Conforme $x$ diminui, o valor da função (o valor de y) diminui. Conforme $x$ caminha para o $-\infty$, y (a função) caminha para zero.
+\\[2pt]
+Ou seja, o limite do valor de y, isto é, o limite da função, quando $x$ tende ao $-\infty$ é zero. Note que em ambos os casos, $x \to \infty$ e $x \to -\infty$, o limite da função (do valor de y) é zero. Essa função $f$ sempre caminha para zero a medida que $x$ aumenta ou diminui infinitamente.
+\\[2pt]
+Mas perceba um detalhe importante: Quando $x$ tendia ao $+\infty$, os respectivos valores de y (da função) para cada valor de $x$ eram:
+\\[2pt]
+$y = 1$ quando $x = 1$
+\\
+$y = 0,5$ quando $x = 2$
+\\
+$y = 0,1$ quando $x = 10$
+\\
+...e por assim em diante...
+\\[2pt]
+Perceba que a função, o valor de $y$, está sempre positivo, para todo $x$. Mesmo o valor de $y$ diminuindo muito, ele continua positivo para todo $x$ quando $x$ tende ao $+\infty$
+\\[2pt]
+Isso quer dizer que $y$ tende ao zero por valores maiores que zero. $y$ tende ao zero vindo da direita na reta numérica.
+\\[2pt]
+Veja uma representação na reta real:
+\[
+\lim_{x\to+\infty}\frac{1}{x}=0
+\]
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+
+% reta numérica
+\draw[->] (-0.5,0) -- (7,0);
+
+% marcas da reta
+\foreach \x/\txt in {
+0/{0},
+1/{0,001},
+2/{0,01},
+3/{0,1},
+4/{0,5},
+5/{1}
+}
+{
+    \fill (\x,0) circle (2pt);
+    \draw (\x,0.08) -- (\x,-0.08);
+    \node[below] at (\x,-0.08) {\txt};
+}
+
+% seta indicando aproximação ao zero
+\draw[->, thick] (5,0.9) -- (0.2,0.9)
+node[midway, above=10pt, align=center]
+{
+$y=\frac{1}{x}$ se aproxima de $0$\\
+por valores maiores que $0$\\
+(pela direita)
+};
+
+% indicação do limite
+\draw[->] (0,1.8) -- (0,0.1);
+\node[above] at (0,1.8) {Limite};
+
+% linhas tracejadas
+\draw[dashed] (1,-0.1) -- (1,-0.8);
+\draw[dashed] (2,-0.1) -- (2,-0.8);
+\draw[dashed] (3,-0.1) -- (3,-0.8);
+\draw[dashed] (4,-0.1) -- (4,-0.8);
+\draw[dashed] (5,-0.1) -- (5,-0.8);
+
+% valores de x
+\node[below] at (1,-0.8) {$x=1000$};
+\node[below] at (2,-0.8) {$x=100$};
+\node[below] at (3,-0.8) {$x=10$};
+\node[below] at (4,-0.8) {$x=2$};
+\node[below] at (5,-0.8) {$x=1$};
+
+\end{tikzpicture}
+\end{center}
+Agora, no caso de $x \to -\infty$ temos os seguintes valores da função para os respectivos valores de x:
+\\[2pt]
+$y = -1$ quando $x = -1$
+\\
+$y = -0,5$ quando $x = -2$
+\\
+$y = -0,1$ quando $x = -10$
+\\
+...e por assim em diante...
+\\[2pt]
+Assim como no caso anterior $y$ está caminhando para zero conforme $x$ caminha para seu valor ($-\infty$ no caso). Porém, dessa vez, para todo valor de $x$, o valor de $y$, valor da função, é negativo.
+\\[2pt]
+Ou seja, a função (valor de y) está caminhando para zero vindo de valores menores que zero, ou seja, pela esquerda na reta real. Veja essa figura para ilustrar
+\[
+\lim_{x\to-\infty}\frac{1}{x}=0
+\]
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+
+% reta numérica
+\draw[->] (-7,0) -- (0.5,0);
+
+% marcas da reta
+\foreach \x/\txt in {
+-5/{-1},
+-4/{-0,5},
+-3/{-0,1},
+-2/{-0,01},
+-1/{-0,001},
+0/{0}
+}
+{
+    \fill (\x,0) circle (2pt);
+    \draw (\x,0.08) -- (\x,-0.08);
+    \node[below] at (\x,-0.08) {\txt};
+}
+
+% seta indicando aproximação ao zero
+\draw[->, thick] (-5,0.9) -- (-0.2,0.9)
+node[midway, above=10pt, align=center]
+{
+$y=\frac{1}{x}$ se aproxima de $0$\\
+por valores menores que $0$\\
+(pela esquerda)
+};
+
+% indicação do limite
+\draw[->] (0,1.8) -- (0,0.1);
+\node[above] at (0,1.8) {Limite};
+
+% linhas tracejadas
+\draw[dashed] (-5,-0.1) -- (-5,-0.8);
+\draw[dashed] (-4,-0.1) -- (-4,-0.8);
+\draw[dashed] (-3,-0.1) -- (-3,-0.8);
+\draw[dashed] (-2,-0.1) -- (-2,-0.8);
+\draw[dashed] (-1,-0.1) -- (-1,-0.8);
+
+% valores de x
+\node[below] at (-5,-0.8) {$x=-1$};
+\node[below] at (-4,-0.8) {$x=-2$};
+\node[below] at (-3,-0.8) {$x=-10$};
+\node[below] at (-2,-0.8) {$x=-100$};
+\node[below] at (-1,-0.8) {$x=-1000$};
+
+\end{tikzpicture}
+\end{center}
+Ambos os limites:
+\[
+\lim_{x\to+\infty}\frac{1}{x} \quad \text{e} \quad \lim_{x\to-\infty}\frac{1}{x}
+\]
+Tem o mesmo valor. Em ambos os casos a função tende a zero, mas caminhando por caminhos diferentes.
+\\[2pt]
+Ter essa noção é muito importante. Dois limites podem ter o mesmo valor, mas o comportamento/caminho da função pode ser diferente em cada um. Você pode ir para um mesmo ponto vindo de caminhos diferentes. E isso é o mais importante quando estudamos limites. Compreender o caminho da função (do valor de y) até o limite, e não simplesmente ver o valor dele. 
+\\[2pt]
+Também, é importante saber que saber o valor L de um limite não diz nada sobre o comportamento da função. Porque os limites de uma função podem ser iguais para $x$ tendendo a diferentes valores, mas apesar de numericamente iguais, a função pode ter um caminho/comportamento totalmente diferente até eles.
+\\[2pt]
+Uma função pode tender ao mesmo limite para $x$ tendendo a diferentes valores, mas ela pode tender a esse mesmo limite vindo por caminhos diferentes. Saber o limite não indica que você sabe por qual caminho a função veio.
+
+\subsection{Entendendo Intuitivamente Limites com Gráfico}
+Vamos esboçar o gráfico da função vista anteriormente
+\[
+y = \frac{1}{x}
+\]
+Vamos representar no gráfico alguns valores de função (valores de y) para seus respectivos valores de $x$ para termos alguma noção de como esboçar esse gráfico. Apenas dizendo de um outro modo: Vamos plotar alguns valores de x e suas respectivas imagens no gráfico
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=-0.5, xmax=5,
+    ymin=-2, ymax=5,
+    xlabel={$x$},
+    ylabel={$y$},
+    xtick={0.5,1,2},
+    ytick={0.5,1,2},
+    width=12cm,
+    height=8cm,
+    samples=200,
+    clip=false
+]
+
+% gráfico de 1/x
+\addplot[
+    domain=0.15:5,
+    thick
+] {1/x};
+
+% pontos destacados
+\addplot[
+    only marks,
+    mark=*,
+    mark size=2.5pt
+]
+coordinates {
+    (0.5,2)
+    (1,1)
+    (2,0.5)
+};
+
+% linhas auxiliares
+\draw[dashed] (axis cs:0.5,0) -- (axis cs:0.5,2);
+\draw[dashed] (axis cs:0,2) -- (axis cs:0.5,2);
+
+\draw[dashed] (axis cs:1,0) -- (axis cs:1,1);
+\draw[dashed] (axis cs:0,1) -- (axis cs:1,1);
+
+\draw[dashed] (axis cs:2,0) -- (axis cs:2,0.5);
+\draw[dashed] (axis cs:0,0.5) -- (axis cs:2,0.5);
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+Lembrando que: Apesar de aqui no computador você ter o desenho perfeito do gráfico, na vida real, para esboçar um gráfico de forma aproximada, sempre representamos alguns pontos que consideramos interessantes da função, isso é, os pares ordenados (x, y) que nos ajudam a entender o comportamento da função, e a partir desses pontos, você esboça o gráfico.
+\\[2pt]
+Observe o gráfico acima. Percebe que conforme a gente avança no eixo $x$, o valor de $y$ vai se aproximando de zero (do eixo horizontal)? Perceba também que o gráfico vai se aproximando do zero, mas nunca é zero, como você pode ver no gráfico, a função (valor de y) vai se aproximando de zero conforme $x$ caminha para $+\infty$, mas nunca toca o eixo $x$ (nunca chega em zero).
+\\[2pt]
+Perceba ainda que conforme $x$ se aproxima de zero, a função (valor de y) tende ao $+\infty$, isso é, cresce infinitamente, afinal estamos dividindo 1 por valores menores que 1, então o valor da função (de y) aumenta.
+\\[2pt]
+Agora, vamos plotar os valores da função correspondentes a valores negativos de $x$
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=-5, xmax=5,
+    ymin=-5, ymax=5,
+    xlabel={$x$},
+    ylabel={$y$},
+    xtick={-2,-1,-0.5,0.5,1,2},
+    ytick={-2,-1,-0.5,0.5,1,2},
+    width=12cm,
+    height=10cm,
+    samples=300,
+    clip=false
+]
+
+% ramo positivo
+\addplot[
+    domain=0.15:5,
+    thick
+] {1/x};
+
+% ramo negativo
+\addplot[
+    domain=-5:-0.15,
+    thick
+] {1/x};
+
+% pontos positivos
+\addplot[
+    only marks,
+    mark=*,
+    mark size=2.5pt
+]
+coordinates {
+    (0.5,2)
+    (1,1)
+    (2,0.5)
+};
+
+% pontos negativos
+\addplot[
+    only marks,
+    mark=*,
+    mark size=2.5pt
+]
+coordinates {
+    (-0.5,-2)
+    (-1,-1)
+    (-2,-0.5)
+};
+
+% linhas auxiliares positivas
+\draw[dashed] (axis cs:0.5,0) -- (axis cs:0.5,2);
+\draw[dashed] (axis cs:0,2) -- (axis cs:0.5,2);
+
+\draw[dashed] (axis cs:1,0) -- (axis cs:1,1);
+\draw[dashed] (axis cs:0,1) -- (axis cs:1,1);
+
+\draw[dashed] (axis cs:2,0) -- (axis cs:2,0.5);
+\draw[dashed] (axis cs:0,0.5) -- (axis cs:2,0.5);
+
+% linhas auxiliares negativas
+\draw[dashed] (axis cs:-0.5,0) -- (axis cs:-0.5,-2);
+\draw[dashed] (axis cs:0,-2) -- (axis cs:-0.5,-2);
+
+\draw[dashed] (axis cs:-1,0) -- (axis cs:-1,-1);
+\draw[dashed] (axis cs:0,-1) -- (axis cs:-1,-1);
+
+\draw[dashed] (axis cs:-2,0) -- (axis cs:-2,-0.5);
+\draw[dashed] (axis cs:0,-0.5) -- (axis cs:-2,-0.5);
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+Veja no gráfico que conforme $x$ caminha para o $-\infty$, a função (o valor de y) caminha para zero. O gráfico ajuda a entender melhor essa noção de movimento dos limites. Ajuda também a entender que o que estamos interessados quando estamos estudando limites é a trajetória até o limite (no caso, até o zero), e não no que acontece no ponto zero (afinal nem conseguimos ver a função chegar até ele). O que conseguimos ver é o caminho da função até ele, conseguimos ver esse caminho o quão próximo quisermos de zero, mas nunca no ponto zero. Afinal, estamos interessados no caminho até o zero, se chegássemos nele não seria mais o caminho até ele, já seria o ponto de chegada. 
+\\[5pt]
+Vamos analisar a seguinte função utilizando seu gráfico para descobrir seus limites quando $x$ tende diferentes valores de $a$
+\[
+f(x) = x^2 + 3x + 2
+\]
+\[
+\lim_{x \to \infty} f(x) 
+\]
+\[
+\lim_{x \to -\infty} f(x) 
+\]
+\[
+\lim_{x \to 1} f(x) 
+\]
+Vamos primeiro encontrar as raízes da função, e depois esboçar o gráfico para entender/encontrar esses limites.
+\\[2pt]
+Utilizando soma e produto, encontramos que $x_1=1$ e $x_2=2$
+\\[2pt]
+Agora vamos esboçar. Sabemos que a concavidade de $f$ é para cima, afinal $a>0$
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=-1, xmax=4,
+    ymin=-1, ymax=6,
+    xlabel={$x$},
+    ylabel={$y$},
+    width=12cm,
+    height=8cm,
+    samples=200,
+    xtick={1,2},
+    ytick=\empty
+]
+
+% gráfico da função
+\addplot[
+    domain=-1:4,
+    thick
+]
+{x^2 - 3*x + 2};
+
+% raízes
+\addplot[
+    only marks,
+    mark=*,
+    mark size=2.5pt
+]
+coordinates {
+    (1,0)
+    (2,0)
+};
+
+\node[above] at (axis cs:1,0) {$(1,0)$};
+\node[above] at (axis cs:2,0) {$(2,0)$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+Olhando o gráfico, fica claro que:
+\\[2pt]
+$lim_{x \to +\infty} f(x)=+\infty$, afinal, da pra ver no gráfico que o valor da função (valor de y) caminha para $+\infty$ conforme $x$ caminha para $+\infty$
+\\[2pt]
+$lim_{x \to -\infty} f(x)=+\infty$, afinal, olhando no gráfico também da pra ver que conforme $x$ caminha para $-\infty$ a função (y) caminha para $+\infty$
+\\[2pt]
+$lim_{x \to 1} f(x)=0$, também da pra concluir isso olhando no gráfico. Só que tem um detalhe importante: $x$ se aproximando de 1 por valores maiores ou menores do que 1, o valor da função, o valor da função é 0. Isso que nos permite concluir que o limite da função quando $x \to 0$ é igual a zero, o fato do limite ser zero vindo de valores maiores ou menores que 1
+
+\subsection{Noção Intuitiva de Funções Complicadas}
+
+Vamos analisar agora a seguinte função e os seguintes limites:
+\[
+f(x) = \frac{2x+1}{x-1}
+\]
+\[
+\lim_{x \to +\infty} f(x)
+\]
+\[
+\lim_{x \to -\infty} f(x)
+\]
+E agora? Como descobriremos esses limites da função (do valor de y)? Esboçar o gráfico dessa função é muito complicado.
+\\[2pt]
+Queremos descobrir o limite dessa função intuitivamente. Como fazer isso? Faremos assim: Vamos ver os respectivos valores da função para valores de $x$ que sejam úteis para nos ajudar a entender o comportamento/caminho da função. Essa é uma ótima forma de descobrir o limite de uma função intuitivamente.
+\\[2pt]
+Como $x$ está tendendo a $+\infty$, vamos ver o que valores cada vez maiores de $x$, e analisaremos o valor da função para cada respectivo $x$
+\[
+x = 100 \Rightarrow \frac{2\cdot 100 + 1}{100 -1} = \frac{201}{99} \approx 2
+\]
+Caso a aproximação não tenha sido óbvia, pensa assim: $\frac{201}{99} \approx \frac{200}{100} \Rightarrow \frac{2\cancel{0}\cancel{0}}{1\cancel{0}\cancel{0}}
+=
+\frac{2}{1}
+=
+2$
+\[
+x = 1000 \Rightarrow \frac{2\cdot 1000 + 1}{1000 -1} = \frac{2001}{999} \approx 2
+\]
+Só que perceba: $\frac{2001}{999}$ é mais próximo de 2 do que $\frac{201}{99}$. Percebe que o que está acontecendo? Quanto maior o valor de $x$, mais a função se aproxima de 2. Conforme $x$ caminha para o $+\infty$ a função (valor de y) caminha para 2.
+\\[2pt]
+Para $x \to -\infty$ acontece a mesma coisa, o limite da função (do valor de y) é 2 também. Porém, caminhando por valores menores que 2.
+\\[2pt]
+Agora que calculamos esse limite de forma intuitiva, vamos calcular esse limite sem usar intuição, vamos calcular de um jeito de formal. Faremos isso de um jeito esperto, sabemos que o limite da função $y = 1/x$ quando $x$ tende a $\pm \infty$ é zero. Isso é $\lim_{x \to \pm \infty} \frac{1}{x} = 0$ 
+\\[2pt]
+Agora, sabendo disso, a gente pode tentar transformar o limite que temos em um limite conhecido. Faremos isso dividindo o numerador e o denominador por x. Veja:
+\[
+f(x) = \frac{2x + 1}{x -1} \Rightarrow f(x) = \frac{\frac{2x}{x} + \frac{1}{x}}{\frac{x}{x} - \frac{1}{x}}
+\]
+Tá, mas em que isso ajuda? Perceba que agora, a expressão $\frac{1}{x}$ apareceu no numerador e no denominador, e sabemos que quando $x \to \pm \infty$ essas funções tendem a zero, e no caso do limite que estamos querendo descobrir, $x$ está exatamente tendendo a infinito, logo o limite dessas funções $(\frac{1}{x})$ é conhecido. Então, olha só:
+\[
+f(x) = \frac{\frac{2\cancel{x}}{\cancel{x}} + \frac{1}{x}}{\frac{\cancel{x}}{\cancel{x}} - \frac{1}{x}} \Rightarrow \frac{2+\cancelto{0}{\frac{1}{x}}}
+     {1-\cancelto{0}{\frac{1}{z}}} \Rightarrow \frac{2}{1} = 2
+\]
+Com isso, provamos que $\lim_{x \to \infty} \frac{2x + 1}{x-1}=2$
+\\[2pt]
+Bônus: Uma coisa interessante é que qualquer valor dividido por por um $x$, quando $x$ tende ao infinito, tende a zero.
+\\[2pt]
+Olha só: $f(x) = \frac{5}{x}$, qual o valor do limite $\lim_{x \to \infty}f(x)$? Simples, apenas manipularemos a função algebricamente:
+\[
+f(x) = \frac{5}{x} \Rightarrow f(x) = 5 \cdot \frac{1}{x}
+\]
+Utilizamos apenas uma propriedade básica de frações pra fazer essa manipulação. Como sabemos que o limite da função $\frac{1}{x}$, quando $x \to \pm \infty$ é zero, então:
+\[
+\lim_{x \to \infty} f(x) = 5 \cdot \cancelto{0}{\frac{1}{x}} \Rightarrow \lim\limits_{x \to \infty} 5 \cdot 0 \Rightarrow \lim\limits_{x \to \infty} 5 = 5
+\]
+
+\section{Definição Formal de Limite}
+A definição formal de limite diz que: Da pra aproximar o valor de f(x) de L o quanto você quiser, contando que você torne o valor de $x$ suficientemente próximo de $a$
+\\[2pt]
+Ou seja, a definição formal de limite apenas formaliza uma coisa que já sabíamos intuitivamente. Você pode tornar o valor de f(x) infinitamente próximo de L se aproximar x de a o suficiente
+\\[2pt]
+A forma que a definição formal de limite é a seguinte: É fornecida
+
+\subsection{Como é Usada a Definição Formal de Limite?}
+A definição formal de limite NÃO é utilizada para descobrirmos o valor de um limite, ela é usada para provar se um limite existe ou não.
+\\[2pt]
+Para podermos usar a definição formal de limite, deve ser fornecido o seguinte:
+\begin{itemize}
+    \item Uma função $f$
+    \item Um valor de $a$
+    \item Um valor de $f(x)$
+    \item Um valor de $L$
+\end{itemize}
+Dados esses valores, você vai ter que provar que da pra tornar $f(x)$ o quão próximo você quiser de $L$, ou seja, provar que o limite existe.
+\\[2pt]
+Para isso, você deve assumir um valor de $\epsilon$, e verificar se da pra encontrar um valor de $\delta$ a partir desse epsilon que implique que o limite existe. Para fazer essa implicação, manipulamos a expressão até ela chegar em uma igualdade que envolva ambos os valores de epsilon e delta. Assim, se essa igualdade for verdadeira, a implicação é verdadeira. 
+\\[2pt]
+Após ter conhecimento disso, fica mais fácil entender que a definição formal de limite, de fato, serve apenas para provar a existência de um limite
+
+\subsubsection{Exemplo de uso da Definição}
+
+\section{Propriedades dos Limites}
+Vamos apresentar agora algumas propriedades sobre limites. Tanto propriedades operatórias ou algébricas, quanto propriedades sobre a natureza dos limites.
+
+\subsection{Propriedades da Natureza dos Limites}
+
+\subsubsection{Unicidade dos limites}
+\textbf{Unicidade dos limites:} ``O limite de uma função, se existir, é único."
+\\[2pt]
+Essa é uma noção importante sobre a natureza dos limites que devemos ter.
+\\[2pt]
+Se uma função tem 2 limites quando $x$ tende a um mesmo valor, então o limite não existe.
+
+\subsubsection{Limite de Funções Polinomiais}
+\[
+\lim_{x \to a} p(x) = p(a) 
+\]
+onde \(p(x)\) é uma função polinomial (ou seja, um polinômio qualquer)
+\\[2pt]
+O que essa propriedade nos diz é que: Se temos o limite de uma função polinomial, o valor do limite é simplesmente o valor da função no ponto $a$
+\\[2pt]
+Simples assim. É só fazer o valor numérico, e pronto.
+\\[2pt]
+Exemplos:
+\[
+\lim_{x \to 2} 3x-1
+\]
+Basta calcularmos o valor da função $3x-1$ no ponto 2
+\[
+\lim_{x \to 2} 3x-1 \xrightarrow{\text{valor numérico}} \lim_{x \to 2} 3 \cdot 2 - 1 = 5
+\]
+Outro exemplo:
+\[
+\lim_{x \to 1} x^5 - 3x^2 + 2 \xrightarrow{\text{substituindo}} \lim_{x \to 1} 1^5 - 3 \cdot 1^2 + 2 = 1 -3 + 2 = 0
+\]
+Explicando a propriedade: Essa propriedade é válida porque toda função polinomial é contínua e limitada. De uma forma intuitiva então já da pra imaginar que a função caminha para o limite em uma trajetória ``normal". Sem descontinuidades, sem explodir pro infinito, nem nenhuma esquisitisse no caminho. Sendo assim, sabendo o ponto para onde $x$ caminha, e sabendo que o caminho da função até o limite (até o ponto f(a)) é ``normal", é de se imaginar que o valor do limite da função é simplesmente o valor numérico.
+
+\subsection{Propriedades Operatórias}
+Supondo que $c$ seja uma constante tal que $c \in \mathbb{R}$. Se $\lim\limits_{x \to a}f(x)$ e $\lim\limits_{x \to a}g(x)$ existem, então valem as seguintes propriedades:
+\begin{enumerate}
+    \item $\displaystyle \lim_{x \to a} [f(x) + g(x)] = \lim_{x \to a} f(x) + \lim_{x \to a} g(x)$
+    \item $\displaystyle \lim_{x \to a} [f(x) - g(x)] = \lim_{x \to a} f(x) - \lim_{x \to a} g(x)$
+    \item $\displaystyle \lim_{x \to a} [c f(x)] = c \lim_{x \to a} f(x)$
+    \item $\displaystyle \lim_{x \to a} [f(x) g(x)] = \lim_{x \to a} f(x) \cdot \lim_{x \to a} g(x)$
+    \item $\displaystyle \lim_{x \to a} \frac{f(x)}{g(x)} = \frac{\displaystyle\lim_{x \to a} f(x)}{\displaystyle\lim_{x \to a} g(x)} \quad \text{se } \lim_{x \to a} g(x) \neq 0$
+\end{enumerate}
+ 
+Essas cinco propriedades podem ser enunciadas da seguinte forma:
+ 
+\begin{enumerate}
+    \item O limite de uma soma é a soma dos limites.
+    \item O limite de uma diferença é a diferença dos limites.
+    \item O limite de uma constante multiplicando uma função é a constante multiplicando o limite desta função.
+    \item O limite de um produto é o produto dos limites.
+    \item O limite de um quociente é o quociente dos limites (desde que o limite do denominador não seja zero).
+\end{enumerate}
+ 
+É fácil entender que essas propriedades são verdadeiras. Por exemplo, se $f(x)$ estiver próximo de $L$ e $g(x)$ estiver próximo de $M$, é razoável concluir que $f(x) + g(x)$ está próximo de $L + M$. Isso nos dá uma base intuitiva para acreditar que a Propriedade 1 é verdadeira
+
+\subsection{Propriedades Adicionais}
+Algumas outras propriedades operatórias podem vir a ser úteis, e são decorrentes das enunciadas anteriormente. É menos comum usarmos elas, mas, sempre bom saber
+\begin{enumerate}
+    \item $\displaystyle \lim_{x \to a} [f(x)]^n = [\lim_{x \to a} f(x)]^n$
+
+    \item $\displaystyle \lim_{x \to a} [\sqrt[n]{f(x)}] = \sqrt[n]{\lim_{x \to a} f(x)}$
+
+    \item $\displaystyle \lim_{x \to a} \ln[{f(x)}] = \ln[{\lim_{x \to a} f(x)}]$
+
+    \item $\displaystyle \lim_{x \to a} [\sin {f(x)}] = \sin[{\lim_{x \to a} f(x)}]$
+\end{enumerate}
+
+\end{document}
