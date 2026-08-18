@@ -81,20 +81,82 @@ Uma função é uma regra que associa elementos de conjuntos
 \\[2pt]
 Mas, ela faz isso de uma forma específica: \textbf{Uma função nunca pode associar 2 elementos do conjunto de saída a um único elemento do conjunto de entrada} \textit{(nunca pode haver 2 valores de y para um único valor de x)}
 \\[5pt]
-No contexto de função na matemática, trabalhamos com elementos genéricos desses conjuntos:
+Quando estudamos função na matemática, trabalhamos com elementos genéricos desses conjuntos:
 \begin{itemize}
     \item Chamamos de $x$ um elemento qualquer pertencente ao conjunto do domínio ($x \in \mathbb{D}$)
 
     \item Chamamos de $y$ um elemento qualquer pertencente ao conjunto do domínio ($y \in \mathbb{CD}$)
 \end{itemize}
-Também damos nomes para os conjuntos: O conjunto de valores que entra na função é chamado de domínio. O conjunto de saída é chamado de contra domínio. Também temos o conjunto imagem, que é dado por todos os valores do contra domínio que possuem um valor de x associado a eles
+Uma função também pode ser vista como a relação entre 2 grandezas, já que os diversos valores que uma grandeza pode assumir pode ser visto como um conjunto. Logo grandezas podem ser vistas como conjuntos
+
+\subsection{Exemplos Intuitivos}
+
+\subsubsection{Laranjas}
+Vamos comprar laranjas em uma feira. Queremos mostrar, para cada quantidade de laranjas, qual será o preço pago por esse total de laranjas. Como podemos expressar essa relação? Sabemos que 1 unidade de laranja custa 3,50 reais
+\\[5pt]
+A melhor forma de expressar essa relação é uma função, pois uma função relaciona as duas grandezas, preço pago e quantidade de laranjas
+\\[5pt]
+Se enxergarmos essas grandezas como conjuntos, podemos mostrar, para cada quantidade de laranjas, qual será o valor pago por aquele total. Ou seja, dado uma quantidade qualquer de laranjas, sempre conseguiremos saber qual será o preço pago por aquele total. Isto é, para todas as possíveis quantidades de laranja compradas, teremos um preço associado a esse total
+\\[5pt]
+Antes de criar a função, vamos entender algumas coisas primeiro:
+\begin{itemize}
+    \item Qual grandeza está em função de qual?
+
+    \item Qual o domínio e o contra domínio?
+
+    \item Qual a lei de formação dessa função?
+\end{itemize}
+Para respondermos a primeira pergunta, precisamos pensar: Podemos controlar qual grandeza? Podemos apenas controlar a quantidade de laranjas que compramos, pois preço é consequência do tanto de laranja que você comprar. Logo, o preço está em função da quantidade de laranjas
+\\[2pt]
+A quantidade de laranjas então é o domínio. Logo, representamos uma quantidade de laranjas qualquer por $x$, já que $x \in \mathbb{D}$. Já o preço é o contra domínio. Logo, um preço qualquer é representado por $y$, já que $y \in \mathbb{CD}$
+\\[5pt]
+Vamos agora determinar o domínio. Sabemos que a quantidade de laranjas que compramos não pode ser negativa (óbvio), e que a mesma também deve ser um número inteiro, já que não podemos comprar meia laranja
+\\[2pt]
+Dadas essas condições, sabemos que o domínio é o conjunto dos naturais ($\mathbb{N}$)
+\\[2pt]
+Para o contra domínio, sabemos que o preço nunca pode ser negativo. Mas, ele pode ser um número decimal. Então, o contra domínio é o conjunto dos racionais ($\mathbb{Q}$)
+\\[5pt]
+Vamos agora pensar sobre a lei de formação: Sabemos que o preço depende da quantidade de laranjas compradas e do preço da unidade da laranja. Sabendo disso, podemos dizer que, para uma quantidade qualquer de laranjas, o preço seria $3,50n$ sendo $n$ a quantidade de laranjas. No nosso caso, a quantidade de laranjas é dada por $x$, então temos que a lei de formação da função de $3,50x$
+\\[5pt]
+Logo, nossa função é
+\[
+f: \mathbb{N} \rightarrow \mathbb{Q}
+\]
+\[
+f(x) = 3,50x
+\]
+\\[5pt]
+Pronto. Agora que temos a função, podemos associar todas as quantidades de laranja existentes a um preço
+
+\subsection{Conjuntos no Contexto de Funções}
+Quando se trata de funções, seus conjuntos de entrada e saída recebem nomes
+\begin{itemize}
+    \item O conjunto de valores que entra na função é chamado de domínio. Representado por $\mathbb{D}$
+
+    \item O conjunto de saída é chamado de contra domínio. Representado por $\mathbb{CD}$
+
+    \item Também temos o conjunto imagem, que é dado por todos os valores do contra domínio que possuem um valor de x associado a eles. Representado por $\mathbb{I}$
+\end{itemize}
+
+\subsubsection{Definindo melhor esses conjuntos}
+Uma função para existir precisa operar sobre conjuntos. Não faz muito sentido falar em função sem falar em conjuntos
+\\[5pt]
+\textbf{Domínio:} O domínio de uma função $f$ é o conjunto onde estão contidos os elementos que serão inseridos na função. Quando falamos em $x$, estamos falando em um elemento qualquer do domínio
+\\[5pt]
+\textbf{Contra Domínio:} O contra domínio de uma função $f$ é o conjunto que contém todos os elementos gerados pela função
+\\[2pt]
+\textbf{MUITO IMPORTANTE:} O contra domínio CONTÉM o conjunto de todos os valores gerados pela função (conjunto imagem). Ele NÃO necessariamente é IGUAL ao conjunto de todos os valores gerados pela função 
 
 \subsection{Noção Intuitiva de Função}
-Uma ideia importante de ter em mente: Uma função tem uma variável dependente e outra independente
+Uma ideia importante de ter em mente: Uma função não é apenas uma relação entre dois conjuntos. Uma função tem uma variável dependente e outra independente. Na matemática, funções tem essa relação de dependência e independência 
 \\[2pt]
-A independente (x) é a que você varia 
+A variável independente (x) é a que você varia 
 \\[2pt]
+A dependente (y) é a que varia conforme x varia (depende de x)
+\\[5pt]
 No momento em que uma pessoa cria uma função, ela há de decidir quem está em função de quem, isto é, quem é a variável independente (x) e quem é a variável independente (y)
+\\[5pt]
+A ideia central é que: Um dos conjuntos é escolhido arbitrariamente (domínio) e o outro é gerado baseado no que foi escolhido (contra domínio). Fazendo assim o contra domínio estar em função do domínio
 
 \subsection{Significado de ``Em função de"}
 Quando falamos ``Em função de" ou ou ``Tal coisa está em função da outra" queremos dizer, um valor varia, e o outro depende dele
@@ -106,11 +168,15 @@ x é um elemento qualquer no domínio, e y é um elemento qualquer no contra dom
 \subsection{Funções em um Contexto mais abstrato}
 Sempre que aprendemos sobre funções aprendemos em um contexto aplicado, como quantidade de laranjas vs preço, ou tempo vs distância, coisas assim
 \\[2pt]
-Mas em um contexto abstrato, como cálculo, muitas vezes temos funções que representam simplesmente uma relação abstrata
-\\[2pt]
-Muitas vezes, só conseguimos expressar objetos na matemática se criarmos uma relação entre 2 conjuntos, e e fazemos isso, por definição temos uma função
+Mas em um contexto abstrato, como cálculo, muitas vezes temos funções que representam simplesmente uma relação
 \\[5pt]
-Ou ainda, funções que praticamente só existem por conta dos estudos relacionados ao seu gráfico
+Muitas vezes, colocamos um valor em função de outro apenas para podermos visualizar como o valor de $y$ se comporta a medida que $x$ varia. Ou seja, de propósito, nós transformamos algo em uma função. Não porque estamos necessariamente interessados nos valores ponto a ponto da função, mas porque estamos interessados no comportamento geral dessa relação de função criada
+\\[5pt]
+Esse conceito de colocar uma coisa em função da outra só pra saber como $y$ se comporta conforme $x$ varia é muito importante. Cria relações importantes
+\\[2pt]
+Só conseguimos expressar alguns objetos na matemática se criarmos uma relação entre 2 conjuntos, e, fazendo isso, por definição, acabamos criando uma função
+\\[5pt]
+Ou ainda, muitas vezes criamos funções que praticamente só existem por conta dos estudos relacionados ao seu gráfico
 \\[5pt]
 A moral da história é: Funções não precisam expressar uma relação entre grandezas. O objeto função é autossuficiente. Estudar este objeto que relaciona conjuntos é, por si só, um uso legítimo e importantíssimo pra matemática
 
@@ -121,7 +187,44 @@ Quando se tem uma função, você, via de regra, deve pensar que $x$ é o único
 \\[5pt]
 Ou seja, quando você pensa em uma função na sua cabeça, você deve pensar em duas grandezas que variam e estão associadas. Mas, você apenas pode alterar os valores de $x$, o $y$ vem como consequência da sua escolha de $x$
 
+\subsection{As Notações e Linguagens de Função}
+No contexto de funções, temos muitas formas de expressar uma mesma coisa, cada uma tendo sua vantagem em tal contexto
+\\[2pt]
+Além disso, temos uma linguagem muito específica para funções, que, se mal compreendida, pode atrapalhar muito a compreensão
+
+\subsubsection{As diferentes Notações $f(x)$ e $y$}
+Às vezes, usamos a notação $f(x)$ e ás vezes, a notação $y$ para representar um valor qualquer do contra domínio
+\\[5pt]
+A notação $f(x)$ é boa quando você quer explicitar em qual valor de $x$ a função está sendo calculada. Ou seja, explicitar a qual valor de $x$ tal $y$ corresponde
+\\[2pt]
+Exemplo: Escolhemos representar os valores da função por $f(x)$. O valor da função para um ponto genérico é representado por $f(x)$. Porém, com essa notação eu posso escrever $f(8) = 5$, entãoa você sabe que o valor da função é 5 quando calculado no ponto 8. Mas, se eu escrevesse $y = 5$ você não saberia em que ponto a função tem esse valor
+\\[5pt]
+Já a notação $y$ é utilizada quando não nos importamos em explicitar em qual ponto a função está sendo calculada, ou até, quando não faz sentido falar em pontos pois não estamos nos referindo a nenhum em particular
+
+\subsubsection{Quando Falamos ``a função"}
+Quando falamos ``a função vale tal coisa em tal ponto", queremos dizer que o valor de $y$ é tal para aquele ponto
+\\[5pt]
+Quando falamos:
+\begin{itemize}
+    \item ``o valor da função em um ponto"
+
+    \item ``o valor de $y$ naquele ponto"
+
+    \item ``o valor de $f$ em ponto ponto"
+\end{itemize}
+Queremos dizer a EXATA mesma coisa. Só escrito de forma diferente
+
 \subsection{Definição formal de Função}
+Uma função $f$ de um conjunto $X$ para um conjunto $Y$ é uma atribuição de um elemento de $Y$ a cada elemento de $X$. O conjunto $X$ é chamado de domínio da função e o conjunto $Y$ é chamado de contradomínio da função.
+\\[2pt]
+Se o elemento $y$ em $Y$ é atribuído a $x$ em $X$ pela função $f$, diz-se que $f$ mapeia $x$ em $y$, e isso é comumente escrito como $y = f(x)$. Nesta notação, $x$ é o argumento ou variável da função.
+\\[5pt]
+Se denotarmos uma função $f(x) = x^3$ somente por $f$, onde $y = f(x)$ temos
+\begin{itemize}
+    \item $\mathbb{D}_f = \mathbb{R}$
+
+    \item O valor que $f$ assume em $x$ é $f(x)$. Ou seja, o valor que $f$ assume em $x$ é $x^3$
+\end{itemize}
 
 \subsection{As Diferentes Representações de Função}
 o conceito de função é uma coisa bem abstrata, uma relação entre elementos de conjuntos que segue tais propriedades
@@ -165,9 +268,20 @@ Vantagens e desvantagens de cada representação:
     \end{itemize}
     \textbf{Desvantagens:}
     \begin{itemize}
-        \item Pra fins de visualização imediata, ela não expressa bem a relação entre cada elemento individual. O que eu quero dizer é que é mais difícil de ver qual elemento tá ligado a qual, não é imediato
+        \item Pra fins de visualização imediata, ela não expressa bem a relação entre cada elemento individual dos conjuntos. O que eu quero dizer é que é mais difícil de ver qual elemento tá ligado a qual, não é imediato
 
         \item Pouco didática/muito complexa em alguns contextos
+    \end{itemize}
+
+    \item Gráfica
+    \\[2pt]
+    \textbf{Vantagens:}
+    \begin{itemize}
+        \item Expressa muito bem os pares $(x, y)$, mostrando claramente o valor de $y$ gerado por cada valor de $x$
+    \end{itemize}
+    \textbf{Desvantagens:}
+    \begin{itemize}
+        \item Em alguns contextos não faz sentido fazer um gráfico da função
     \end{itemize}
 \end{itemize}
 
@@ -180,6 +294,10 @@ O gráfico de $f$ pode ser pensado como o lugar geométrico descrito pelo ponto 
 
 \subsubsection{Definição}
 O gráfico de uma função $f$ é um subconjunto de todos os pares ordenados (x, y)
+
+\subsection{Funções no Contexto Algébrico}
+
+\subsubsection{Funções como ``encapsuladores"}
 
 \section{Limites}
 A base para todos os conteúdos de cálculo é o conceito de limite
